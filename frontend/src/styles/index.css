@@ -1,0 +1,100 @@
+/* =====================================================================
+   Styles globaux — Portfolio Binetou Gueye « Racines & Code »
+   1. Tailwind CSS v4
+   2. Polices auto-hébergées (@fontsource)
+   3. Tokens (copie de design/tokens.css : ne pas modifier ici)
+   4. @theme : relie les classes Tailwind aux variables des tokens
+   ===================================================================== */
+
+@import "tailwindcss";
+
+/* Fraunces variable : graisse + taille optique, droit et italique */
+@import "@fontsource-variable/fraunces/opsz.css";
+@import "@fontsource-variable/fraunces/opsz-italic.css";
+/* Inter 400 / 500 / 600 */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+/* JetBrains Mono 400 / 500 */
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+@import "./tokens.css";
+
+/* Le thème passe par data-theme, pas par la variante dark: de Tailwind */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Le paquet @fontsource-variable enregistre la police sous le nom
+   « Fraunces Variable » : on le place en tête de la pile de tokens.css. */
+:root {
+  --font-display: "Fraunces Variable", "Fraunces", Georgia, serif;
+}
+
+/* « inline » : les classes renvoient directement aux variables CSS,
+   qui changent selon data-theme (sombre / clair). */
+@theme inline {
+  /* Couleurs (classes bg-*, text-*, border-*…) */
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-glow: var(--glow);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+
+  --color-contrast-bg: var(--contrast-bg);
+  --color-contrast-card: var(--contrast-card);
+  --color-contrast-text: var(--contrast-text);
+  --color-contrast-text-soft: var(--contrast-text-soft);
+  --color-contrast-label: var(--contrast-label);
+  --color-contrast-border: var(--contrast-border);
+
+  --color-contact-bg: var(--contact-bg);
+
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --color-halo-1: var(--halo-1);
+  --color-halo-2: var(--halo-2);
+
+  /* Polices (classes font-display, font-body, font-mono) */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+  --font-sans: var(--font-body);
+
+  /* Rayons */
+  --radius-pill: var(--radius-pill);
+  --radius-card: var(--radius-card);
+  --radius-panel: var(--radius-panel);
+
+  /* Ombre du verre */
+  --shadow-glass: var(--glass-shadow);
+
+  /* Courbe d'animation */
+  --ease-out-soft: var(--ease-out);
+}
+
+/* Base */
+html {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Focus visible sur tous les éléments interactifs */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

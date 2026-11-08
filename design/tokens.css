@@ -1,0 +1,129 @@
+/* =====================================================================
+   Design tokens — Portfolio Binetou Gueye « Racines & Code »
+   Deux modes : sombre (défaut si le système est sombre) et clair.
+   Le mode est porté par l'attribut data-theme="dark" | "light" sur <html>.
+   À importer dans src/styles/index.css (Tailwind CSS v4).
+   ===================================================================== */
+
+/* ---------- Mode sombre (valeurs par défaut) ---------- */
+:root,
+[data-theme="dark"] {
+  /* Palette d'origine (marrons uniquement) */
+  --c-ebene:   #220F0B;
+  --c-ebene-2: #2C140E;
+  --c-cacao:   #4D2519;
+  --c-acajou:  #733F29;
+  --c-cuivre:  #A26641;
+  --c-caramel: #C5946B;
+  --c-lin:     #DECDBB;
+
+  /* Rôles */
+  --bg:              var(--c-ebene);   /* fond principal */
+  --bg-2:            var(--c-ebene-2); /* fond intermédiaire (section Projets) */
+  --surface:         var(--c-cacao);   /* étiquettes, puces */
+  --border:          var(--c-acajou);
+  --glow:            var(--c-cuivre);  /* lueurs, grands titres décoratifs */
+  --accent:          var(--c-caramel); /* boutons, liens, italiques des titres */
+  --on-accent:       var(--c-ebene);   /* texte sur bouton accent */
+  --text:            var(--c-lin);
+  --text-muted:      rgba(222, 205, 187, 0.82);
+
+  /* Sections contrastées (À propos, Ma méthode) */
+  --contrast-bg:        var(--c-lin);
+  --contrast-card:      #EBDFD2;
+  --contrast-text:      var(--c-ebene);
+  --contrast-text-soft: var(--c-cacao);
+  --contrast-label:     var(--c-acajou);
+  --contrast-border:    var(--c-cuivre);
+
+  /* Section Contact */
+  --contact-bg: var(--c-cacao);
+
+  /* Verre dépoli */
+  --glass-bg:     rgba(44, 20, 14, 0.42);
+  --glass-border: rgba(222, 205, 187, 0.14);
+  --glass-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  --glass-blur:   blur(20px) saturate(140%);
+
+  /* Halos */
+  --halo-1: rgba(162, 102, 65, 0.55);
+  --halo-2: rgba(197, 148, 107, 0.35);
+
+  --grain-opacity: 0.06;
+  color-scheme: dark;
+}
+
+/* ---------- Mode clair ---------- */
+[data-theme="light"] {
+  --bg:              #FBF6F0; /* papier */
+  --bg-2:            #F3EADF;
+  --surface:         #E8DACA; /* sable */
+  --border:          #C9A27F; /* tan */
+  --glow:            #A26641;
+  --accent:          #733F29; /* acajou */
+  --on-accent:       #FBF6F0;
+  --text:            #220F0B;
+  --text-muted:      rgba(34, 15, 11, 0.78);
+
+  --contrast-bg:        #220F0B;
+  --contrast-card:      #2C140E;
+  --contrast-text:      #FBF6F0;
+  --contrast-text-soft: #E8DACA;
+  --contrast-label:     #C9A27F;
+  --contrast-border:    #733F29;
+
+  --contact-bg: #E8DACA;
+
+  --glass-bg:     rgba(255, 251, 246, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 24px 60px rgba(115, 63, 41, 0.12);
+
+  --halo-1: rgba(197, 148, 107, 0.32);
+  --halo-2: rgba(222, 205, 187, 0.6);
+
+  --grain-opacity: 0.045;
+  color-scheme: light;
+}
+
+/* ---------- Typographie ---------- */
+:root {
+  --font-display: "Fraunces", Georgia, serif;          /* titres, italique expressive */
+  --font-body:    "Inter", system-ui, sans-serif;      /* textes, interface */
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace; /* étiquettes, code */
+
+  /* Échelle (desktop) */
+  --fs-hero: clamp(2.75rem, 6vw, 5.5rem);   /* 88px */
+  --fs-h2:   clamp(2.25rem, 4.2vw, 3.75rem);/* 60px */
+  --fs-h3:   1.875rem;                       /* 30px */
+  --fs-lead: 1.1875rem;                      /* 19px */
+  --fs-body: 1rem;
+  --fs-label: 0.8125rem;                     /* 13px, mono, letter-spacing 3px */
+
+  --radius-pill: 999px;
+  --radius-card: 28px;
+  --radius-panel: 32px;
+  --container: 1280px;
+  --gutter: 64px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --theme-transition: 400ms;
+}
+
+/* Utilitaire verre (à reprendre dans un composant <Glass>) */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Transition douce entre les modes */
+html.theme-transition,
+html.theme-transition * {
+  transition: background-color var(--theme-transition) ease,
+              color var(--theme-transition) ease,
+              border-color var(--theme-transition) ease,
+              fill var(--theme-transition) ease,
+              stroke var(--theme-transition) ease !important;
+}

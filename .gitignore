@@ -1,0 +1,24 @@
+# Dépendances
+node_modules/
+
+# Builds
+dist/
+build/
+.vercel/
+
+# Secrets : ne jamais pousser
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+db.sqlite3
+staticfiles/
+
+# Système / éditeur
+.DS_Store
+*.log

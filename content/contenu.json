@@ -1,0 +1,228 @@
+{
+  "_note": "Tous les textes du site, validés par Binetou. Ne pas inventer de chiffres, ne jamais afficher de note ou de « 100 % ». Les liens marqués A_COMPLETER seront fournis par Binetou.",
+  "_affichageMobile": "Les versions courtes (clés …Mobile et statutCourt) s'utilisent sous 768 px, les versions longues au-dessus.",
+  "meta": {
+    "titre": "Binetou Gueye — Développeuse full-stack Web, Mobile & IA",
+    "description": "Portfolio de Binetou Gueye, développeuse full-stack certifiée (Simplon Sénégal) : Django, Angular, React, IA. Basée à Dakar, ouverte aux postes en CDI, CDD, stages et missions freelance.",
+    "langue": "fr",
+    "url": "A_COMPLETER (ex. https://binetougueye.vercel.app)"
+  },
+  "identite": {
+    "nom": "Binetou Gueye",
+    "role": "Développeuse full-stack · Web · Mobile · IA",
+    "ville": "Keur Massar, Dakar, Sénégal",
+    "email": "binetouguey3s@gmail.com",
+    "telephone_affiche": false,
+    "github": "https://github.com/binetouguey3s",
+    "linkedin": "https://linkedin.com/in/binetou-gueye-b70a31178",
+    "disponibilite": "Disponible · CDI, CDD, stage, freelance",
+    "cv": [
+      { "label": "CV Général", "fichier": "/cv/CV_Binetou_Gueye_General.pdf" },
+      { "label": "CV Front-End", "fichier": "/cv/CV_Binetou_Gueye_Front-End.pdf" },
+      { "label": "CV Back-End", "fichier": "/cv/CV_Binetou_Gueye_Back-End.pdf" }
+    ]
+  },
+  "navigation": [
+    { "label": "À propos", "ancre": "#apropos" },
+    { "label": "Compétences", "ancre": "#arbre" },
+    { "label": "Projets", "ancre": "#projets" },
+    { "label": "Méthode", "ancre": "#methode" },
+    { "label": "Contact", "ancre": "#contact" }
+  ],
+  "boutonIA": "Demander à Binetou IA",
+  "hero": {
+    "surtitre": "DÉVELOPPEUSE FULL-STACK · WEB · MOBILE · IA",
+    "surtitreMobile": "FULL-STACK · WEB · MOBILE · IA",
+    "titre": { "avant": "Je fais", "italique": "pousser", "apres": "des solutions numériques, des racines au fruit." },
+    "titreMobile": { "avant": "Je fais", "italique": "pousser", "apres": "des solutions numériques." },
+    "texte": "Binetou Gueye, développeuse certifiée Simplon Sénégal. Du back-end Django aux interfaces Angular et React, jusqu'à l'IA (LLM, RAG, vision), je conçois des applications utiles, pensées pour les réalités africaines.",
+    "texteMobile": "Binetou Gueye, développeuse certifiée Simplon Sénégal. Back-end Django, front Angular et React, IA.",
+    "ctaPrincipal": { "label": "Voir mes projets", "ancre": "#projets" },
+    "ctaSecondaire": "Télécharger mon CV",
+    "etiquettesPortrait": ["Django · DRF", "IA · RAG", "Angular · React", "Flutter · PWA"],
+    "etiquettesPortraitMobile": ["IA · RAG", "Django · Angular"],
+    "defiler": "DÉFILER ↓"
+  },
+  "chiffres": [
+    { "valeur": "Certifiée", "libelle": "Développeuse Web, Mobile & IA, Simplon Sénégal" },
+    { "valeur": "10", "libelle": "Projets conçus et livrés" },
+    { "valeur": "1", "libelle": "Startup fondée : Sen Suivi la Solution" },
+    { "valeur": "3", "libelle": "Langues : français, wolof, anglais" }
+  ],
+  "chiffresMobile": [
+    { "valeur": "Certifiée", "libelle": "Web, Mobile & IA" },
+    { "valeur": "10", "libelle": "projets livrés" },
+    { "valeur": "1", "libelle": "startup fondée" }
+  ],
+  "apropos": {
+    "numero": "01 — À PROPOS",
+    "titre": { "avant": "Des mathématiques au code,", "italique": "une même rigueur." },
+    "paragraphes": [
+      "Formée en mathématiques, physique et informatique à l'Université Alioune Diop de Bambey, puis en informatique industrielle et réseaux (BTS), j'ai trouvé ma voie dans le développement web, mobile et IA chez Simplon Sénégal, où j'ai obtenu la certification professionnelle Développeur Web, Mobile et IA.",
+      "Fondatrice de Sen Suivi la Solution, je pilote un produit de la maquette Figma au déploiement. J'aime les architectures propres, les interfaces soignées et les projets qui changent le quotidien des gens."
+    ],
+    "citation": "« Utiliser la technologie pour résoudre des problèmes réels. »",
+    "etiquettes": ["Fondatrice & Product Owner", "Lead back-end", "Scrum Master", "Taekwondo"]
+  },
+  "competences": {
+    "numero": "02 — COMPÉTENCES",
+    "titre": { "avant": "Un arbre qui pousse", "italique": "au fil du défilement." },
+    "texte": "Les racines portent le back-end, le tronc la méthode, les branches le front et le mobile, et les fruits, l'intelligence artificielle.",
+    "groupes": [
+      { "partie": "fruits", "titre": "LES FRUITS · IA", "items": ["LLM", "RAG", "Hugging Face", "Vision · ResNet-50", "GroqCloud", "n8n"], "misEnAvant": ["LLM", "RAG"] },
+      { "partie": "branches", "titre": "LES BRANCHES · FRONT & MOBILE", "items": ["Angular", "React", "TypeScript", "TailwindCSS", "Flutter", "PWA", "Figma"] },
+      { "partie": "tronc", "titre": "LE TRONC · MÉTHODE", "items": ["UML", "Merise", "Scrum · Kanban", "Git Flow", "Tests & QA"] },
+      { "partie": "racines", "titre": "LES RACINES · BACK-END", "items": ["Python", "Django 5", "Django REST Framework", "FastAPI", "PostgreSQL", "Docker · Nginx"] }
+    ]
+  },
+  "projets": {
+    "numero": "03 — PROJETS",
+    "titre": { "avant": "Ce que j'ai", "italique": "fait grandir." },
+    "indication": "Défilez → la galerie glisse horizontalement",
+    "_noteLiens": "Un lien vide masque le bouton. Dans « autres », une ligne avec url est cliquable (nouvel onglet, petite flèche ↗ discrète).",
+    "vedette": {
+      "badge": "PROJET PHARE · MA STARTUP",
+      "nom": "Sen Suivi la Solution",
+      "description": "Plateforme web et mobile de prévention, de suivi et d'orientation pour le bien-être mental au Sénégal, accessible à toute heure et sans jugement. Journal d'humeur, test de stress, Titou (assistant IA d'écoute 24h/24, texte et voix), forum modéré par l'IA, ressources, lieux de détente et professionnels vérifiés.",
+      "role": "Fondatrice & CEO, développeuse full-stack · depuis 2023 · pré-incubation Fabrique 360",
+      "stack": ["Django", "PostgreSQL", "Angular", "FastAPI", "LLM · RAG", "n8n", "Docker"],
+      "devise": "« Un esprit sain pour une société saine »",
+      "piliers": "PRÉVENTION · SUIVI · ORIENTATION",
+      "logo": { "sombre": "/images/projets/sensuivi-logo-sombre.png", "clair": "/images/projets/sensuivi-logo-clair.png" },
+      "lienApplication": "A_COMPLETER",
+      "video": "/videos/sensuivi-presentation-720p.mp4",
+      "videoAffiche": "/videos/sensuivi-presentation-affiche.jpg"
+    },
+    "galerie": [
+      { "num": "01", "nom": "Andë Sétal", "meta": "Lead back-end · Mairie de Dakar Plateau", "domaine": "CIVIC-TECH", "description": "Plateforme civic-tech de signalement d'incidents et de gestion de la salubrité urbaine, livrée en 8 jours.", "stack": ["Django 5", "DRF", "MySQL", "Docker"], "lien": { "label": "GitHub ↗", "url": "https://github.com/AndeSetale/Backend_AndeSetale" } },
+      { "num": "02", "nom": "YEES NAA CONNECT", "meta": "Full-stack · En production sur LWS", "domaine": "AGRITECH · TRAÇABILITÉ", "description": "Marketplace en circuit court pour le riz local, avec traçabilité des produits de bout en bout par QR code.", "stack": ["Django", "Tailwind", "QR code", "Docker"], "lien": { "label": "Voir le site ↗", "url": "https://yeesnaa.com/" } },
+      { "num": "03", "nom": "AgriMétéo Sénégal", "meta": "Front-end · En binôme", "domaine": "CLIMAT · DATA", "description": "Suivi climatique des 14 régions du Sénégal avec graphiques dynamiques.", "stack": ["Angular 17", "Tailwind", "Chart.js"], "lien": { "label": "Démo en ligne ↗", "url": "https://brief-agri-meteo-angular-typescript.vercel.app" } },
+      { "num": "04", "nom": "Contrôle qualité par vision", "meta": "IA · Micro-service", "domaine": "VISION PAR ORDINATEUR", "description": "Micro-service de contrôle qualité automatisé sur images de produits, par vision par ordinateur.", "stack": ["FastAPI", "ResNet-50", "PyTorch"], "lien": { "label": "GitHub ↗", "url": "https://github.com/binetouguey3s/control-ComputerVision" } },
+      { "num": "05", "nom": "JOJ Dakar 2026", "meta": "Designer UI/UX", "domaine": "UI/UX · ÉVÉNEMENT", "description": "Plateforme pour les spectateurs : 10 écrans utilisateur et 9 écrans d'administration, à partir d'un design system dédié.", "stack": ["Figma", "Design system"], "lien": { "label": "Voir la maquette ↗", "url": "" } },
+      { "num": "06", "nom": "SenAgroLink", "meta": "Développement web · En ligne", "domaine": "AGRITECH · E-COMMERCE", "description": "Plateforme qui relie directement agriculteurs et consommateurs : boutiques en ligne, prix du marché, livraison et traçabilité des produits.", "stack": ["HTML", "CSS", "JavaScript", "PHP", "Python"], "lien": { "label": "Voir le site ↗", "url": "https://senagrolink.vercel.app/" } },
+      { "num": "07", "nom": "AfriStory", "meta": "UI/UX · Hackathon JOJ Dakar 2026", "domaine": "CULTURE · FINTECH", "description": "Réseau social culturel multilingue (wolof, diola, pulaar, sérère) où les créateurs sont rémunérés en FCFA via Orange Money.", "stack": ["Figma", "React Native", "Node.js", "Orange Money API"], "lien": { "label": "Voir le prototype ↗", "url": "https://shape-cyprus-02393842.figma.site/" } }
+    ],
+    "autres": [
+      { "nom": "Eco-Stock", "detail": "API REST Django", "url": "https://github.com/binetouguey3s/Eco-Stock" },
+      { "nom": "KeurÉtudiant", "detail": "Scrum Master" },
+      { "nom": "Sunu Signalement", "detail": "Angular 17", "url": "https://civic-tech-incidents.netlify.app" },
+      { "nom": "Sunu Idées", "detail": "Supabase · OpenRouter", "url": "https://sunuideeopenrouter.vercel.app/" },
+      { "nom": "Quiz interactifs", "detail": "Angular · Django" },
+      { "nom": "Assistant RAG — Règlement Simplon", "detail": "LangChain · ChromaDB", "url": "https://github.com/binetouguey3s/systeme-rag1" },
+      { "nom": "Analyse de sentiment d’avis", "detail": "FastAPI · Transformers", "url": "https://github.com/binetouguey3s/analyse-sentiment" }
+    ]
+  },
+  "methode": {
+    "numero": "04 — MA MÉTHODE",
+    "titre": { "avant": "De la graine au fruit,", "italique": "chaque projet suit le même chemin." },
+    "texte": "Comprendre avant de coder, concevoir avant de construire, et livrer quelque chose qui sert vraiment.",
+    "etapes": [
+      { "num": "01", "nom": "LA GRAINE", "titre": "Écouter", "texte": "Je pars du terrain : entretiens, questionnaires, besoins réels des utilisateurs avant la moindre ligne de code.", "tags": ["Étude terrain", "User stories"] },
+      { "num": "02", "nom": "LES RACINES", "titre": "Concevoir", "texte": "Je modélise la base et les parcours, puis je dessine les écrans. Une architecture solide, pensée pour durer.", "tags": ["UML · Merise", "Figma"] },
+      { "num": "03", "nom": "LE TRONC", "titre": "Construire", "texte": "API propres et documentées, interfaces soignées, IA intégrée quand elle apporte vraiment quelque chose.", "tags": ["Django · Angular", "Git Flow"] },
+      { "num": "04", "nom": "LE FRUIT", "titre": "Livrer", "texte": "Conteneurisé, déployé, testé en conditions réelles. Puis on écoute à nouveau, et l'arbre continue de pousser.", "tags": ["Docker", "Vercel · LWS"], "misEnAvant": true }
+    ],
+    "terminal": {
+      "invite": "binetou@dakar: ~/portfolio",
+      "commande": "curl {VITE_API_URL}/api/profil/",
+      "commandeSansApi": "curl /api/profil",
+      "noteCommande": "Adresse générée automatiquement : VITE_API_URL suivie de /api/profil/ (ex. http://localhost:8000/api/profil/ en local, https://portfolio-binetou-api.vercel.app/api/profil/ en production). Si VITE_API_URL est absente, on affiche commandeSansApi. Avec un nom de domaine plus tard, il suffit de changer VITE_API_URL.",
+      "note": "La réponse affichée doit venir du vrai endpoint GET /api/profil/ de Django (repli : le JSON ci-dessous)."
+    },
+    "engagements": [
+      { "num": "i.", "titre": "Un code lisible et documenté", "texte": "Pour que l'équipe qui reprend le projet s'y retrouve." },
+      { "num": "ii.", "titre": "Des interfaces pour tout le monde", "texte": "Accessibles, rapides, pensées d'abord pour le mobile." },
+      { "num": "iii.", "titre": "Des solutions ancrées ici", "texte": "Langues locales, paiement mobile, connexions modestes." },
+      { "num": "iv.", "titre": "Une IA utile et encadrée", "texte": "Au service des utilisateurs, jamais un gadget." }
+    ]
+  },
+  "profilApi": {
+    "nom": "Binetou Gueye",
+    "role": "Développeuse full-stack · Web · Mobile · IA",
+    "base": "Dakar, Sénégal",
+    "stack": {
+      "back": ["Python", "Django", "DRF", "FastAPI", "PostgreSQL"],
+      "front": ["Angular", "React", "TypeScript", "Tailwind"],
+      "ia": ["LLM", "RAG", "Vision", "n8n"]
+    },
+    "certification": "Développeur Web, Mobile et IA · Simplon Sénégal",
+    "langues": ["français", "wolof", "anglais"],
+    "disponible": true
+  },
+  "chatbot": {
+    "numero": "05 — BINETOU IA",
+    "titre": { "avant": "Une question ?", "italique": "Demandez à mon IA." },
+    "texte": "Un assistant entraîné sur mon parcours et mes projets répond aux recruteurs à toute heure. Construit avec Django et un LLM, comme Titou dans Sen Suivi.",
+    "nom": "Binetou IA",
+    "statut": "En ligne · répond en français et en anglais",
+    "statutCourt": "En ligne · français et anglais",
+    "accueil": "Bonjour ! Je suis l'assistante IA de Binetou. Posez-moi vos questions sur son profil, ses projets ou sa disponibilité.",
+    "suggestions": ["Quelle est sa stack principale ?", "Parle-moi de Sen Suivi", "Est-elle disponible ?"],
+    "suggestionsMobile": ["Quelle est sa stack ?", "Parle-moi de Sen Suivi", "Est-elle disponible ?"],
+    "placeholder": "Posez votre question…",
+    "horsLigne": "Binetou IA revient bientôt. En attendant, écrivez directement à binetouguey3s@gmail.com.",
+    "_noteActions": "L'IA ne produit jamais d'URL. /api/chat/ renvoie { reponse, actions: [id] } : 2 actions maximum, choisies par mots-clés, uniquement parmi les id ci-dessous (id inconnu ignoré). Les cibles pointent vers d'autres clés de ce fichier (une seule source à modifier). Cible vide ou A_COMPLETER : bouton masqué. Hors ligne : aucun bouton.",
+    "actions": [
+      { "id": "voir-sen-suivi", "label": "Voir l'application ↗", "cible": "projets.vedette.lienApplication", "repli": "projets.vedette.video" },
+      { "id": "voir-ande-setal", "label": "Voir Andë Sétal ↗", "cible": "projets.galerie[01].lien.url" },
+      { "id": "voir-yees-naa", "label": "Voir YEES NAA CONNECT ↗", "cible": "projets.galerie[02].lien.url" },
+      { "id": "voir-agrimeteo", "label": "Voir AgriMétéo Sénégal ↗", "cible": "projets.galerie[03].lien.url" },
+      { "id": "voir-vision", "label": "Voir le projet vision ↗", "cible": "projets.galerie[04].lien.url" },
+      { "id": "voir-senagrolink", "label": "Voir SenAgroLink ↗", "cible": "projets.galerie[06].lien.url" },
+      { "id": "voir-afristory", "label": "Voir AfriStory ↗", "cible": "projets.galerie[07].lien.url" },
+      { "id": "cv-general", "label": "Télécharger le CV Général", "cible": "identite.cv[0].fichier" },
+      { "id": "cv-front", "label": "Télécharger le CV Front-End", "cible": "identite.cv[1].fichier" },
+      { "id": "cv-back", "label": "Télécharger le CV Back-End", "cible": "identite.cv[2].fichier" },
+      { "id": "ecrire-email", "label": "Écrire un email", "cible": "mailto:identite.email" },
+      { "id": "voir-projets", "label": "Voir les projets", "cible": "#projets" },
+      { "id": "voir-contact", "label": "Aller au contact", "cible": "#contact" }
+    ]
+  },
+  "contact": {
+    "numero": "06 — CONTACT",
+    "titre": { "avant": "Faisons pousser", "italique": "votre projet." },
+    "texte": "Keur Massar, Dakar, Sénégal · Ouverte aux postes en CDI, CDD, stages et missions freelance.",
+    "formulaire": {
+      "nom": { "label": "Nom complet", "placeholder": "Votre nom" },
+      "email": { "label": "Email", "placeholder": "vous@entreprise.com" },
+      "message": { "label": "Message", "placeholder": "Parlez-moi de votre projet…" },
+      "bouton": "Envoyer le message",
+      "succes": "Merci ! Votre message est bien arrivé, je vous réponds rapidement.",
+      "erreur": "Le message n'est pas parti. Réessayez ou écrivez à binetouguey3s@gmail.com."
+    }
+  },
+  "bandeaux": {
+    "ruban1": [
+      { "categorie": "DÉVELOPPEMENT", "items": ["Python", "Django", "Django REST Framework", "FastAPI", "Angular", "React", "TypeScript", "JavaScript", "Flutter", "Node.js", "Tailwind CSS", "PostgreSQL", "MySQL", "Supabase"] },
+      { "categorie": "IA", "items": ["LLM", "RAG", "Hugging Face", "OpenAI", "GroqCloud", "n8n"] }
+    ],
+    "ruban2": [
+      { "categorie": "CONCEPTION", "items": ["UML", "Merise"] },
+      { "categorie": "MAQUETTE", "items": ["Figma", "UX Pilot", "Photoshop", "Illustrator"] },
+      { "categorie": "GESTION DE PROJET", "items": ["Scrum", "Kanban", "Jira", "Trello", "Notion", "ClickUp"] },
+      { "categorie": "DÉPLOIEMENT", "items": ["Docker", "Nginx", "GitHub Actions", "Vercel", "Netlify", "LWS", "Git"] }
+    ]
+  },
+  "footer": {
+    "cta": { "surtitre": "UN PROJET, UN POSTE, UNE IDÉE ?", "titre": { "avant": "Faisons-la", "italique": "grandir ensemble." }, "bouton1": "Écrire un email ↗", "bouton2": "Demander à Binetou IA" },
+    "presentation": "Développeuse full-stack web, mobile et IA, fondatrice de Sen Suivi la Solution. Basée à Dakar, ouverte au monde.",
+    "colonnes": { "navigation": "NAVIGATION", "reseaux": "RÉSEAUX", "cv": "MES CV" },
+    "navigation": [
+      { "label": "À propos", "ancre": "#apropos" },
+      { "label": "Compétences", "ancre": "#arbre" },
+      { "label": "Projets", "ancre": "#projets" },
+      { "label": "Méthode", "ancre": "#methode" },
+      { "label": "Binetou IA", "ancre": "#ia" },
+      { "label": "Contact", "ancre": "#contact" }
+    ],
+    "reseaux": [
+      { "label": "GitHub", "source": "identite.github", "icone": "github" },
+      { "label": "LinkedIn", "source": "identite.linkedin", "icone": "linkedin" },
+      { "label": "Email", "source": "mailto:identite.email", "icone": "mail" }
+    ],
+    "copyright": "© 2026 Binetou Gueye · Tous droits réservés",
+    "mention": "DAKAR, SÉNÉGAL · CONÇU ET DÉVELOPPÉ AVEC REACT & DJANGO",
+    "retourHaut": "Retour en haut",
+    "signature": { "avant": "Binetou", "italique": "Gueye" }
+  }
+}
