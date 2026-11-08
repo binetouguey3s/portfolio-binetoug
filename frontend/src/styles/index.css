@@ -98,3 +98,48 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
+
+/* Verre dépoli (.glass vient de tokens.css) : repli plus opaque si
+   backdrop-filter n'est pas géré. Hors @layer pour passer devant tokens.css. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: color-mix(in srgb, var(--bg-2) 94%, transparent);
+  }
+}
+
+.glass.glass-sans-ombre {
+  box-shadow: none;
+}
+
+/* ---------- Affichage selon le mode ----------
+   Variables héritées : un bloc avec son propre data-theme (ex. page /demo)
+   affiche la bonne version, même dans une page de l'autre mode. */
+:root,
+[data-theme="dark"] {
+  --affiche-sombre: block;
+  --affiche-clair: none;
+}
+[data-theme="light"] {
+  --affiche-sombre: none;
+  --affiche-clair: block;
+}
+
+@layer components {
+  .seulement-sombre {
+    display: var(--affiche-sombre);
+  }
+  .seulement-clair {
+    display: var(--affiche-clair);
+  }
+
+  /* Grain plein écran (texture de bruit, calculée une seule fois) */
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-size: 240px 240px;
+  }
+}

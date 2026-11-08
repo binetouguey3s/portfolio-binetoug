@@ -7,6 +7,20 @@
     <!-- Titre et description injectés depuis content/contenu.json (meta) -->
     <title>%TITRE%</title>
     <meta name="description" content="%DESCRIPTION%" />
+    <!-- Anti-flash : pose data-theme avant le premier rendu
+         (choix mémorisé, sinon préférence du système). Voir src/lib/theme.ts -->
+    <script>
+      (function () {
+        var theme
+        try {
+          theme = localStorage.getItem('theme')
+        } catch (e) {}
+        if (theme !== 'dark' && theme !== 'light') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.setAttribute('data-theme', theme)
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
