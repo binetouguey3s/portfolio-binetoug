@@ -136,6 +136,28 @@ body {
     display: var(--affiche-clair);
   }
 
+  /* Arbre des compétences : la partie survolée s'illumine, les autres s'estompent */
+  .arbre :is([data-groupe="racines"], [data-groupe="tronc"], [data-groupe="branches"], [data-groupe="feuillage"]) {
+    transition:
+      opacity 400ms var(--ease-out),
+      filter 400ms var(--ease-out);
+  }
+  .arbre[data-actif] :is([data-groupe="racines"], [data-groupe="tronc"], [data-groupe="branches"], [data-groupe="feuillage"]) {
+    opacity: 0.28;
+  }
+  .arbre[data-actif="racines"] [data-groupe="racines"],
+  .arbre[data-actif="tronc"] [data-groupe="tronc"],
+  .arbre[data-actif="branches"] [data-groupe="branches"],
+  .arbre[data-actif="feuillage"] [data-groupe="feuillage"] {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px var(--accent));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .arbre [data-groupe] {
+      transition: none;
+    }
+  }
+
   /* Grain plein écran (texture de bruit, calculée une seule fois) */
   .grain {
     position: fixed;

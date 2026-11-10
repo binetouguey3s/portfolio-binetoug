@@ -40,7 +40,7 @@ export default function SectionHeading({
       <p className={`m-0 font-mono text-[13px] tracking-[3px] ${couleurAccent}`}>{numero}</p>
       <Balise
         id={id}
-        className="m-0 font-display text-[length:var(--fs-h2)] leading-[1.02] font-normal tracking-[-1.5px] text-balance"
+        className="m-0 font-display text-[length:var(--fs-h2)] leading-[1.02] font-normal tracking-[-1.5px]"
       >
         {titre.avant} <em className={`font-light ${couleurAccent}`}>{titre.italique}</em>
         {titre.apres ? ` ${titre.apres}` : null}
