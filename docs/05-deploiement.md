@@ -21,14 +21,21 @@
 **Back-end** (`backend/.env` en local, et dans Vercel pour le projet API) :
 | Variable | Exemple / source |
 |---|---|
-| `SECRET_KEY` | longue chaîne aléatoire (Claude Code peut la générer) |
+| `SECRET_KEY` | longue chaîne aléatoire, différente de celle du local |
 | `DEBUG` | `True` en local, `False` en production |
-| `ALLOWED_HOSTS` | `localhost,127.0.0.1,.vercel.app` |
-| `DATABASE_URL` | chaîne Neon (`postgresql://…?sslmode=require`) |
-| `CORS_ALLOWED_ORIGINS` | `http://localhost:5173,https://<ton-front>.vercel.app` |
+| `ALLOWED_HOSTS` | `.vercel.app` (l'adresse Vercel du projet est aussi ajoutée automatiquement) |
+| `DATABASE_URL` | chaîne Neon **pooled** (hôte en `-pooler`, `…?sslmode=require`) |
+| `CORS_ALLOWED_ORIGINS` | adresse du front, ex. `https://portfolio-binetou.vercel.app` |
+| `CSRF_TRUSTED_ORIGINS` | (option) seulement pour un domaine personnel ; l'adresse Vercel est ajoutée automatiquement |
 | `GROQ_API_KEY` | clé GroqCloud |
-| `GROQ_MODEL` | nom d'un modèle Llama récent listé dans la console Groq |
+| `GROQ_MODEL` | `qwen/qwen3.8-27b` |
+| `GROQ_MODEL_SECOURS` | `openai/gpt-oss-20b` (tenté une fois si 429 ou délai dépassé) |
+| `LIMITE_CONTACT` / `LIMITE_CHAT` | (option) `5/hour` / `20/hour` par défaut |
 | `CONTACT_NOTIFY_EMAIL` (option) | `binetouguey3s@gmail.com` |
+| `EMAIL_BACKEND`, `EMAIL_HOST`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`, `DEFAULT_FROM_EMAIL` | mêmes valeurs que `backend/.env` (mot de passe d'application Google) |
+
+Les textes du site et la base du chatbot sont lus dans des copies placées dans `backend/` (seul ce dossier est déployé) :
+après chaque modification de `content/`, lancer `python manage.py construire_base_chatbot` avant de pousser (un test le rappelle).
 
 **Front-end** (`frontend/.env.local`, et dans Vercel pour le projet front) :
 | Variable | Exemple |
@@ -40,11 +47,11 @@ Ne jamais pousser de fichier `.env` sur GitHub.
 ## Neon
 1. Crée un projet « portfolio-binetou », région la plus proche (Europe).
 2. Copie la chaîne de connexion dans `DATABASE_URL`.
-3. Depuis `backend/` : `python manage.py migrate`, puis la commande de chargement des projets, puis `python manage.py createsuperuser` pour l'admin.
+3. Depuis `backend/` : `python manage.py migrate`, `python manage.py createcachetable` (limite de débit partagée), `python manage.py charger_projets`, puis `python manage.py createsuperuser` pour l'admin.
 
 ## Vercel
 1. **Projet API** : « Add New Project » → dépôt `portfolio-binetou` → Root Directory `backend` → Vercel détecte Django automatiquement → ajoute les variables du back → Deploy. Teste `https://<api>.vercel.app/api/sante/`.
-2. **Projet front** : nouveau projet sur le même dépôt → Root Directory `frontend` → preset Vite → variable `VITE_API_URL` = URL de l'API → Deploy.
+2. **Projet front** : nouveau projet sur le même dépôt → Root Directory `frontend` → preset Vite → variable `VITE_API_URL` = URL de l'API → Deploy. Ne pas ajouter de réécriture de toutes les adresses vers `index.html` : la page `404.html` ne s'afficherait plus.
 3. Mets à jour `CORS_ALLOWED_ORIGINS` du projet API avec l'URL finale du front, puis redéploie l'API.
 4. Chaque `git push` sur `main` redéploie automatiquement les deux projets.
 

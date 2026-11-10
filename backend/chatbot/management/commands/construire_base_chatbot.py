@@ -1,12 +1,15 @@
 """
-Génère la base de connaissances de Binetou IA.
+Prépare les fichiers de content/ utilisés par le back-end en production.
 
-    python manage.py construire_base_chatbot             # écrit chatbot/data/base-connaissances-chatbot.md
-    python manage.py construire_base_chatbot --verifier  # échoue si le fichier n'est pas à jour
+    python manage.py construire_base_chatbot             # écrit les deux fichiers ci-dessous
+    python manage.py construire_base_chatbot --verifier  # échoue si l'un d'eux n'est pas à jour
 
-Assemble content/base-connaissances-chatbot.md (consignes et présentation) et
-content/contenu.json (projets, compétences, méthode, contact, outils) en un seul texte.
-À relancer après chaque modification de content/ (et à chaque déploiement).
+1. chatbot/data/base-connaissances-chatbot.md : assemble content/base-connaissances-chatbot.md
+   (consignes et présentation) et content/contenu.json (projets, compétences, méthode…).
+2. portfolio/data/contenu.json : copie exacte de content/contenu.json (sur Vercel, seul backend/
+   est déployé : le profil, les messages du formulaire et les actions du chatbot y sont lus).
+
+À relancer après chaque modification de content/, avant de pousser sur GitHub.
 """
 
 from django.conf import settings
@@ -30,6 +33,9 @@ class Command(BaseCommand):
         texte = construire_texte_base()
         cible = settings.CHATBOT_BASE
         actuel = cible.read_text(encoding="utf-8") if cible.exists() else None
+        contenu = settings.CONTENU_JSON_SOURCE.read_text(encoding="utf-8")
+        copie = settings.CONTENU_JSON_COPIE
+        copie_actuelle = copie.read_text(encoding="utf-8") if copie.exists() else None
 
         tokens = estimer_tokens(texte)
         if tokens > TOKENS_BASE_MAX:
@@ -39,9 +45,10 @@ class Command(BaseCommand):
             )
 
         if verifier:
-            if actuel != texte:
+            if actuel != texte or copie_actuelle != contenu:
                 raise CommandError(
-                    "La base du chatbot n'est pas à jour : lancez « python manage.py construire_base_chatbot »."
+                    "La base du chatbot ou la copie de contenu.json n'est pas à jour : "
+                    "lancez « python manage.py construire_base_chatbot »."
                 )
             self.stdout.write(self.style.SUCCESS(f"Base du chatbot à jour (~{tokens} tokens)."))
             return
@@ -49,5 +56,8 @@ class Command(BaseCommand):
         cible.parent.mkdir(parents=True, exist_ok=True)
         cible.write_text(texte, encoding="utf-8")
         message_systeme.cache_clear()
+        copie.parent.mkdir(parents=True, exist_ok=True)
+        copie.write_text(contenu, encoding="utf-8")
+        self.stdout.write(f"Copie de contenu.json {'inchangée' if copie_actuelle == contenu else 'mise à jour'} : {copie}")
         etat = "inchangée" if actuel == texte else "mise à jour"
         self.stdout.write(self.style.SUCCESS(f"Base du chatbot {etat} : {cible} (~{tokens} tokens)."))

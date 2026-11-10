@@ -73,6 +73,17 @@ class ProjetsTests(TestCase):
         self.assertFalse(Project.objects.filter(nom="Ancien projet").exists())
 
 
+class CopieContenuTests(TestCase):
+    def test_copie_de_contenu_json_a_jour(self):
+        """Échoue si content/contenu.json a changé sans relancer « python manage.py construire_base_chatbot »."""
+        from django.conf import settings
+
+        self.assertEqual(
+            settings.CONTENU_JSON_COPIE.read_text(encoding="utf-8"),
+            settings.CONTENU_JSON_SOURCE.read_text(encoding="utf-8"),
+        )
+
+
 class ContactTests(TestCase):
     def setUp(self):
         cache.clear()  # remet à zéro la limite de débit

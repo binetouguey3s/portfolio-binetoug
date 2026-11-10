@@ -41,6 +41,11 @@ if not SECRET_KEY:
 
 ALLOWED_HOSTS = env_liste("ALLOWED_HOSTS", "localhost,127.0.0.1")
 
+# Adresses fournies par Vercel au déploiement (ex. portfolio-binetou-api.vercel.app) :
+# acceptées automatiquement, y compris pour la connexion à l'admin (CSRF, plus bas)
+ADRESSES_VERCEL = [h for h in (os.getenv("VERCEL_PROJECT_PRODUCTION_URL"), os.getenv("VERCEL_URL")) if h]
+ALLOWED_HOSTS += [h for h in ADRESSES_VERCEL if h not in ALLOWED_HOSTS]
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -96,6 +101,12 @@ if DATABASE_URL:
             ssl_require=DATABASE_URL.startswith("postgres"),
         )
     }
+    # Connexion « pooled » de Neon (hôte en -pooler) : pas de curseurs côté serveur
+    if "-pooler" in DATABASE_URL:
+        DATABASES["default"]["DISABLE_SERVER_SIDE_CURSORS"] = True
+    # Cache partagé dans la base : la limite de débit vaut pour toutes les copies du serveur
+    # (sur Vercel, plusieurs instances tournent en parallèle). Table créée par « createcachetable ».
+    CACHES = {"default": {"BACKEND": "django.core.cache.backends.db.DatabaseCache", "LOCATION": "cache_django"}}
 else:
     DATABASES = {
         "default": {
@@ -130,6 +141,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # En local, le front peut être ouvert sous localhost ou 127.0.0.1, en dev (5173) ou en aperçu du build (4173)
 CORS_ALLOWED_ORIGINS = env_liste("CORS_ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173")
 CSRF_TRUSTED_ORIGINS = env_liste("CSRF_TRUSTED_ORIGINS", "")
+CSRF_TRUSTED_ORIGINS += [f"https://{h}" for h in ADRESSES_VERCEL if f"https://{h}" not in CSRF_TRUSTED_ORIGINS]
 
 # API REST
 REST_FRAMEWORK = {
@@ -147,8 +159,13 @@ REST_FRAMEWORK = {
 }
 
 # Contenu du site : content/contenu.json (source unique des textes).
-# En production, si le dépôt complet n'est pas disponible, on peut indiquer un autre chemin.
-CONTENU_JSON = Path(os.getenv("CONTENU_JSON", REPO_DIR / "content" / "contenu.json"))
+# Sur Vercel, seul backend/ est déployé : on lit alors la copie portfolio/data/contenu.json,
+# tenue à jour par « python manage.py construire_base_chatbot » (un test vérifie qu'elle l'est).
+CONTENU_JSON_SOURCE = REPO_DIR / "content" / "contenu.json"
+CONTENU_JSON_COPIE = BASE_DIR / "portfolio" / "data" / "contenu.json"
+CONTENU_JSON = Path(
+    os.getenv("CONTENU_JSON") or (CONTENU_JSON_SOURCE if CONTENU_JSON_SOURCE.exists() else CONTENU_JSON_COPIE)
+)
 
 # Chatbot « Binetou IA » (app chatbot)
 # Source rédigée par Binetou, puis base générée par « python manage.py construire_base_chatbot »
