@@ -1,7 +1,11 @@
+import ChatLauncher from './components/ChatLauncher'
+import ChatPanel from './components/ChatPanel'
+import ChatProvider from './components/ChatProvider'
 import Grain from './components/Grain'
 import Preloader from './components/Preloader'
 import { useLenis } from './hooks/useLenis'
 import About from './sections/About'
+import Chatbot from './sections/Chatbot'
 import Hero from './sections/Hero'
 import Method from './sections/Method'
 import Navbar, { ID_CONTENU } from './sections/Navbar'
@@ -19,7 +23,7 @@ function App() {
   useLenis()
 
   return (
-    <>
+    <ChatProvider>
       <Preloader />
       <Grain />
       <Navbar />
@@ -38,8 +42,7 @@ function App() {
 
           <Method />
 
-          {/* 05 · Binetou IA (étape 9) */}
-          <section id="ia" className="min-h-[80vh] bg-bg" />
+          <Chatbot />
 
           {/* 06 · Contact (étape 10) */}
           <section id="contact" className="min-h-[80vh] bg-contact-bg" />
@@ -50,8 +53,14 @@ function App() {
 
         {/* Footer (étape 11) */}
         <footer className="min-h-[50vh] bg-bg" />
+
+        {/* Bulle Binetou IA flottante (inerte avec le reste quand le menu mobile est ouvert) */}
+        <ChatLauncher />
       </div>
-    </>
+
+      {/* Panneau Binetou IA (fenêtre modale) */}
+      <ChatPanel />
+    </ChatProvider>
   )
 }
 

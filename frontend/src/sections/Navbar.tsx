@@ -3,6 +3,7 @@ import { X } from 'lucide-react'
 import Glass from '../components/Glass'
 import Logo from '../components/Logo'
 import ThemeToggle from '../components/ThemeToggle'
+import { useChat } from '../hooks/useChat'
 import { useScrollNavbar } from '../hooks/useScrollNavbar'
 import { contenu } from '../lib/content'
 import { bloquerDefilement } from '../lib/lenis'
@@ -20,6 +21,7 @@ export const ID_CONTENU = 'contenu'
 export default function Navbar() {
   const { navigation, boutonIA } = contenu
   const { compact, cache } = useScrollNavbar()
+  const { ouvrirPanneau } = useChat()
   const [menuOuvert, setMenuOuvert] = useState(false)
   const [focusDedans, setFocusDedans] = useState(false)
   const idMenu = useId()
@@ -90,13 +92,15 @@ export default function Navbar() {
                 </a>
               ))}
               <ThemeToggle />
-              <a
-                href="#ia"
-                className="inline-flex items-center gap-2.5 rounded-pill bg-accent px-5 py-3 text-[14px] font-semibold text-on-accent no-underline transition-[filter] duration-200 hover:brightness-110"
+              <button
+                type="button"
+                aria-haspopup="dialog"
+                onClick={ouvrirPanneau}
+                className="inline-flex cursor-pointer items-center gap-2.5 rounded-pill bg-accent px-5 py-3 text-[14px] font-semibold text-on-accent transition-[filter] duration-200 hover:brightness-110"
               >
                 <span aria-hidden="true" className="block size-2 rounded-full bg-on-accent" />
                 {boutonIA}
-              </a>
+              </button>
             </nav>
 
             {/* Mobile et tablette */}
@@ -160,14 +164,18 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <a
-            href="#ia"
-            onClick={() => fermerMenu(false)}
-            className="inline-flex items-center justify-center gap-2.5 self-stretch rounded-pill bg-accent px-6 py-4 text-base font-semibold text-on-accent no-underline sm:self-start"
+          <button
+            type="button"
+            aria-haspopup="dialog"
+            onClick={() => {
+              fermerMenu(false)
+              ouvrirPanneau()
+            }}
+            className="inline-flex cursor-pointer items-center justify-center gap-2.5 self-stretch rounded-pill bg-accent px-6 py-4 text-base font-semibold text-on-accent sm:self-start"
           >
             <span aria-hidden="true" className="block size-2 rounded-full bg-on-accent" />
             {boutonIA}
-          </a>
+          </button>
         </nav>
       </Glass>
     </>

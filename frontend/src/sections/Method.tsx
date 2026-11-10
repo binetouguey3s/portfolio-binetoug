@@ -97,7 +97,7 @@ export default function Method() {
       ref={section}
       id="methode"
       aria-labelledby="titre-methode"
-      className="bg-contrast-bg text-contrast-text"
+      className="overflow-x-clip bg-contrast-bg text-contrast-text"
     >
       <div className="mx-auto flex max-w-[1280px] flex-col gap-12 px-[22px] py-[72px] md:px-10 lg:gap-[72px] lg:px-16 lg:py-[120px]">
         {/* En-tête */}

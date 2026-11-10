@@ -92,6 +92,9 @@ html {
 
 body {
   margin: 0;
+  /* Filet de sécurité : rien ne doit créer de défilement horizontal
+     (clip ne crée pas de zone de défilement : position fixe et épinglage intacts) */
+  overflow-x: clip;
   min-height: 100dvh;
   background-color: var(--bg);
   color: var(--text);
@@ -169,6 +172,56 @@ body {
   }
   @media (prefers-reduced-motion: reduce) {
     .curseur {
+      animation: none;
+    }
+  }
+
+  /* Indicateur « … » du chatbot */
+  .points-attente {
+    animation: points 1s ease-in-out infinite;
+  }
+  @keyframes points {
+    0%,
+    80%,
+    100% {
+      opacity: 0.25;
+      transform: translateY(0);
+    }
+    40% {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .points-attente {
+      animation: none;
+      opacity: 0.7;
+    }
+  }
+
+  /* Panneau Binetou IA : fond assombri et entrée depuis la droite (desktop) */
+  .panneau-chat::backdrop {
+    background: color-mix(in srgb, var(--bg) 60%, transparent);
+    backdrop-filter: blur(4px);
+  }
+  .panneau-chat[open] {
+    animation: panneau-entre 420ms var(--ease-out);
+  }
+  @keyframes panneau-entre {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+  @media (min-width: 768px) {
+    @keyframes panneau-entre {
+      from {
+        transform: translateX(100%);
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .panneau-chat[open] {
       animation: none;
     }
   }
