@@ -12,7 +12,7 @@ class Project(models.Model):
     stack = models.JSONField("stack", default=list, blank=True, help_text='Liste de technologies, ex. ["Django 5", "DRF"].')
     lien = models.URLField("lien", blank=True, help_text="Laisser vide pour masquer le bouton.")
     label_lien = models.CharField("texte du lien", max_length=60, blank=True, help_text="Ex. « GitHub ↗ ».")
-    vedette = models.BooleanField("projet vedette", default=False, help_text="Sen Suivi la Solution.")
+    vedette = models.BooleanField("projet vedette", default=False, help_text="L'application Sen Suivi.")
 
     class Meta:
         ordering = ["ordre", "id"]

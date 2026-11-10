@@ -10,7 +10,7 @@ type Format = { video: string; affiche: string }
 type VideoModalProps = {
   ouverte: boolean
   surFermeture: () => void
-  /** Nom lu par les lecteurs d'écran (ex. « Sen Suivi la Solution ») */
+  /** Nom lu par les lecteurs d'écran (ex. « Sen Suivi ») */
   titre: string
   /** Vidéo 16:9 pour les écrans larges */
   paysage: Format

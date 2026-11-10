@@ -1,9 +1,11 @@
 from io import StringIO
+from unittest.mock import patch
 
 from django.core.cache import cache
 from django.core.management import call_command
 from django.test import TestCase, override_settings
 from rest_framework.test import APIClient
+from rest_framework.throttling import ScopedRateThrottle
 
 from .contenu import lire_contenu
 from .models import ContactMessage, Project
@@ -46,7 +48,7 @@ class ProjetsTests(TestCase):
 
         donnees = APIClient().get("/api/projets/").json()
         self.assertTrue(donnees[0]["vedette"])
-        self.assertEqual(donnees[0]["nom"], "Sen Suivi la Solution")
+        self.assertEqual(donnees[0]["nom"], "Sen Suivi")
         # Même forme que projets.galerie de contenu.json
         premier = donnees[1]
         self.assertEqual(premier["num"], galerie[0]["num"])
@@ -109,25 +111,9 @@ class ContactTests(TestCase):
         self.assertEqual(reponse.status_code, 201)  # le robot croit avoir réussi
         self.assertEqual(ContactMessage.objects.count(), 0)
 
-    @override_settings(
-        REST_FRAMEWORK={
-            "DEFAULT_THROTTLE_RATES": {"contact": "2/hour", "chat": "20/hour"},
-            "DEFAULT_PARSER_CLASSES": ["rest_framework.parsers.JSONParser"],
-            "DEFAULT_AUTHENTICATION_CLASSES": [],
-            "UNAUTHENTICATED_USER": None,
-        }
-    )
+    @patch.dict(ScopedRateThrottle.THROTTLE_RATES, {"contact": "2/hour"})
     def test_limite_de_debit(self):
-        from rest_framework.settings import api_settings
-        from rest_framework.throttling import ScopedRateThrottle
-
-        api_settings.reload()
-        ScopedRateThrottle.THROTTLE_RATES = api_settings.DEFAULT_THROTTLE_RATES
-        try:
-            codes = [self.client.post("/api/contact/", MESSAGE_VALIDE, format="json").status_code for _ in range(3)]
-        finally:
-            api_settings.reload()
-            ScopedRateThrottle.THROTTLE_RATES = api_settings.DEFAULT_THROTTLE_RATES
+        codes = [self.client.post("/api/contact/", MESSAGE_VALIDE, format="json").status_code for _ in range(3)]
         self.assertEqual(codes, [201, 201, 429])
 
     @override_settings(

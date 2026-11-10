@@ -85,7 +85,7 @@
     "_noteLiens": "Un lien vide masque le bouton. Dans « autres », une ligne avec url est cliquable (nouvel onglet, petite flèche ↗ discrète).",
     "vedette": {
       "badge": "PROJET PHARE · MA STARTUP",
-      "nom": "Sen Suivi la Solution",
+      "nom": "Sen Suivi",
       "description": "Plateforme web et mobile de prévention, de suivi et d'orientation pour le bien-être mental au Sénégal, accessible à toute heure et sans jugement. Journal d'humeur, test de stress, Titou (assistant IA d'écoute 24h/24, texte et voix), forum modéré par l'IA, ressources, lieux de détente et professionnels vérifiés.",
       "role": "Fondatrice & CEO, développeuse full-stack · depuis 2023 · pré-incubation Fabrique 360",
       "stack": ["Django", "PostgreSQL", "Angular", "FastAPI", "LLM · RAG", "n8n", "Docker"],
