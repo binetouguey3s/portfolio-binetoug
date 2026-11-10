@@ -149,6 +149,16 @@ REST_FRAMEWORK = {
 # En production, si le dépôt complet n'est pas disponible, on peut indiquer un autre chemin.
 CONTENU_JSON = Path(os.getenv("CONTENU_JSON", REPO_DIR / "content" / "contenu.json"))
 
+# Chatbot « Binetou IA » (app chatbot)
+# Source rédigée par Binetou, puis base générée par « python manage.py construire_base_chatbot »
+CHATBOT_SOURCE_MD = REPO_DIR / "content" / "base-connaissances-chatbot.md"
+CHATBOT_BASE = BASE_DIR / "chatbot" / "data" / "base-connaissances-chatbot.md"
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
+GROQ_MODEL = os.getenv("GROQ_MODEL", "").strip()
+# Modèle tenté une fois si le principal répond 429 (limite atteinte) ou dépasse le délai
+GROQ_MODEL_SECOURS = os.getenv("GROQ_MODEL_SECOURS", "").strip()
+GROQ_URL = os.getenv("GROQ_URL", "https://api.groq.com/openai/v1/chat/completions")
+
 # Notification par email des messages du formulaire (facultatif)
 CONTACT_NOTIFY_EMAIL = os.getenv("CONTACT_NOTIFY_EMAIL", "").strip()
 EMAIL_BACKEND = os.getenv("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
@@ -168,3 +178,15 @@ if not DEBUG:
     SECURE_HSTS_SECONDS = 60 * 60 * 24 * 30
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_REFERRER_POLICY = "same-origin"
+
+# Journaux : les messages des apps (dont les tokens envoyés à Groq) s'affichent dans la console
+# (terminal en local, onglet Logs de Vercel en production)
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {"console": {"class": "logging.StreamHandler"}},
+    "loggers": {
+        "chatbot": {"handlers": ["console"], "level": "INFO"},
+        "portfolio": {"handlers": ["console"], "level": "INFO"},
+    },
+}
