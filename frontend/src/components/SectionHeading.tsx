@@ -15,6 +15,8 @@ type SectionHeadingProps = {
   id?: string
   /** Espace entre le numéro et le titre (classe gap-*, 18 px par défaut) */
   espace?: string
+  /** normale : 60 px (desktop) · grande : 76 px (titre de Contact) */
+  taille?: 'normale' | 'grande'
   className?: string
   children?: ReactNode
 }
@@ -30,17 +32,22 @@ export default function SectionHeading({
   as: Balise = 'h2',
   id,
   espace = 'gap-[18px]',
+  taille = 'normale',
   className = '',
   children,
 }: SectionHeadingProps) {
   const couleurAccent = ton === 'contrast' ? 'text-contrast-label' : 'text-accent'
+  const classesTaille =
+    taille === 'grande'
+      ? 'text-[clamp(2.5rem,6vw,4.75rem)] leading-[0.98] tracking-[-2px]'
+      : 'text-[length:var(--fs-h2)] leading-[1.02] tracking-[-1.5px]'
 
   return (
     <div className={`flex flex-col ${espace} ${className}`}>
       <p className={`m-0 font-mono text-[13px] tracking-[3px] ${couleurAccent}`}>{numero}</p>
       <Balise
         id={id}
-        className="m-0 font-display text-[length:var(--fs-h2)] leading-[1.02] font-normal tracking-[-1.5px]"
+        className={`m-0 font-display font-normal ${classesTaille}`}
       >
         {titre.avant} <em className={`font-light ${couleurAccent}`}>{titre.italique}</em>
         {titre.apres ? ` ${titre.apres}` : null}

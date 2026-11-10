@@ -194,7 +194,15 @@
       "message": { "label": "Message", "placeholder": "Parlez-moi de votre projet…" },
       "bouton": "Envoyer le message",
       "succes": "Merci ! Votre message est bien arrivé, je vous réponds rapidement.",
-      "erreur": "Le message n'est pas parti. Réessayez ou écrivez à binetouguey3s@gmail.com."
+      "erreur": "Le message n'est pas parti. Réessayez ou écrivez à binetouguey3s@gmail.com.",
+      "erreurs": {
+        "nomRequis": "Indiquez votre nom.",
+        "nomCourt": "Votre nom doit contenir au moins 2 caractères.",
+        "emailRequis": "Indiquez votre adresse email.",
+        "emailInvalide": "Cette adresse email ne semble pas valide.",
+        "messageRequis": "Écrivez votre message.",
+        "messageCourt": "Votre message doit contenir au moins 10 caractères."
+      }
     }
   },
   "bandeaux": {

@@ -246,6 +246,15 @@ export interface Contact {
     bouton: string
     succes: string
     erreur: string
+    /** Messages de validation, affichés sous chaque champ */
+    erreurs: {
+      nomRequis: string
+      nomCourt: string
+      emailRequis: string
+      emailInvalide: string
+      messageRequis: string
+      messageCourt: string
+    }
   }
 }
 

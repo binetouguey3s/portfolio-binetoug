@@ -6,6 +6,7 @@ import Preloader from './components/Preloader'
 import { useLenis } from './hooks/useLenis'
 import About from './sections/About'
 import Chatbot from './sections/Chatbot'
+import Contact from './sections/Contact'
 import Hero from './sections/Hero'
 import Method from './sections/Method'
 import Navbar, { ID_CONTENU } from './sections/Navbar'
@@ -44,8 +45,7 @@ function App() {
 
           <Chatbot />
 
-          {/* 06 · Contact (étape 10) */}
-          <section id="contact" className="min-h-[80vh] bg-contact-bg" />
+          <Contact />
 
           {/* Bandeaux d'outils : moitié --contact-bg, moitié --bg (étape 11) */}
           <section aria-hidden="true" className="h-[330px] bg-[linear-gradient(180deg,var(--contact-bg)_48%,var(--bg)_48%)]" />

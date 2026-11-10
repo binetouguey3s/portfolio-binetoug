@@ -53,6 +53,11 @@ Réglages :
 - Fournisseur : API GroqCloud (compatible OpenAI) via `httpx` ; variables `GROQ_API_KEY`, `GROQ_MODEL` (choisir un modèle Llama récent listé dans la console Groq).
 - Garde-fous : longueur maximale de la question (500 caractères), limite de débit par IP, historique limité aux 6 derniers échanges, température basse (0,3), délai d'attente de 20 s.
 - Si l'API est indisponible ou dépasse le délai : le front affiche `chatbot.horsLigne`.
+- **Le chatbot répond à toutes les questions sur le contenu du site.** Sa base de connaissances est **générée automatiquement** à partir de deux sources :
+  1. `content/base-connaissances-chatbot.md` (consignes et présentation) ;
+  2. `content/contenu.json` : projets avec leurs liens, compétences, méthode, engagements, disponibilité, contact, outils des bandeaux.
+- Une **commande Django** (ex. `python manage.py construire_base_chatbot`) assemble les deux sources en **un seul texte propre**, utilisé comme message système. Elle est **relancée à chaque déploiement** : une modification de `contenu.json` met le chatbot à jour sans autre intervention.
+- Les consignes ne changent pas : **ne rien inventer**, **pas de téléphone**, **pas de note ni de pourcentage**. Les liens ne sont jamais produits par l'IA : les boutons d'action restent des identifiants fixes de `chatbot.actions`.
 
 ## Repli hors ligne (obligatoire)
 | Fonction | Si l'API ne répond pas |
