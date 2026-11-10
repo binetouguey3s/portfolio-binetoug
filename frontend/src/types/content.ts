@@ -44,6 +44,7 @@ export interface Identite {
   role: string
   ville: string
   email: string
+  /** Le numéro n'est jamais dans ce fichier (il serait lisible dans le code du site) : voir base-connaissances-chatbot.md */
   telephone_affiche: boolean
   github: string
   linkedin: string

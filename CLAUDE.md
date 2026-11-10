@@ -14,7 +14,7 @@ En cas de doute entre deux sources, la maquette gagne pour le visuel, `contenu.j
 - **Palette uniquement en marrons** (voir tokens). Aucun vert, bleu ou autre couleur ajoutée. Le logo Sen Suivi s'affiche dans sa version monochrome fournie (`assets/projets/`), jamais en bleu.
 - **Jamais de note ni de « 100 % »**, ni aucun chiffre qui n'est pas dans `contenu.json`.
 - **Pas d'âge** dans la description de Sen Suivi. Pas de captures d'écran de Sen Suivi, pas d'étude de cas.
-- **Pas de numéro de téléphone** affiché sur le site ni donné par le chatbot.
+- **Pas de numéro de téléphone affiché sur le site.** Le chatbot peut le donner uniquement si on le lui demande, en proposant aussi l'email ou le formulaire. Le numéro est seulement dans `content/base-connaissances-chatbot.md` (lu par le serveur), jamais dans `contenu.json` ni dans le front : il serait lisible dans le code du site.
 - **Deux modes** : sombre et clair, via `data-theme` sur `<html>`. Le mode par défaut suit le système (`prefers-color-scheme`), le choix est mémorisé dans `localStorage`, la bascule dure 400 ms. Chaque composant doit être vérifié dans les deux modes.
 - **Verre dépoli** (classe ou composant `Glass`) sur : menu flottant, étiquettes du portrait, bande de chiffres, cartes de compétences, cartes de projets, fenêtre du chatbot et ses bulles, formulaire de contact, ruban 2, éléments du footer, et leurs équivalents mobiles.
 - **Accessibilité** : contraste AA (texte 4,5:1), vrais `<button>` et `<a href>`, `aria-label` sur les boutons à icône, `alt` sur les images, navigation au clavier, focus visible. Respecter `prefers-reduced-motion` : animations coupées ou réduites, défilement natif, bandeaux immobiles.

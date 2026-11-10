@@ -57,7 +57,7 @@ Réglages :
   1. `content/base-connaissances-chatbot.md` (consignes et présentation) ;
   2. `content/contenu.json` : projets avec leurs liens, compétences, méthode, engagements, disponibilité, contact, outils des bandeaux.
 - Une **commande Django** (ex. `python manage.py construire_base_chatbot`) assemble les deux sources en **un seul texte propre**, utilisé comme message système. Elle est **relancée à chaque déploiement** : une modification de `contenu.json` met le chatbot à jour sans autre intervention.
-- Les consignes ne changent pas : **ne rien inventer**, **pas de téléphone**, **pas de note ni de pourcentage**. Les liens ne sont jamais produits par l'IA : les boutons d'action restent des identifiants fixes de `chatbot.actions`.
+- Les consignes ne changent pas : **ne rien inventer**, **pas de note ni de pourcentage**. **Téléphone** : jamais affiché sur le site ; le chatbot le donne uniquement si on le lui demande. Le numéro est seulement dans `base-connaissances-chatbot.md` (côté serveur), jamais dans `contenu.json`, qui est intégré au code du front. Les liens ne sont jamais produits par l'IA : les boutons d'action restent des identifiants fixes de `chatbot.actions`.
 
 ## Repli hors ligne (obligatoire)
 | Fonction | Si l'API ne répond pas |
