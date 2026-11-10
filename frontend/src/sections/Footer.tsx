@@ -1,11 +1,13 @@
 import { useRef } from 'react'
-import { ArrowUp, Download } from 'lucide-react'
+import { ArrowUp } from 'lucide-react'
 import Button from '../components/Button'
+import CvLiens from '../components/CvLiens'
 import Glass from '../components/Glass'
 import Halo from '../components/Halo'
 import Logo from '../components/Logo'
 import { useChat } from '../hooks/useChat'
 import { contenu } from '../lib/content'
+import { LANGUE_CV } from '../lib/cv'
 import { gsap, useGSAP } from '../lib/gsap'
 import { LIEN_EXTERNE } from '../lib/liens'
 
@@ -165,19 +167,23 @@ export default function Footer() {
             })}
           </div>
 
-          <div className="flex flex-col gap-3">
+          {/* @container : les cartes CV s'empilent si la colonne est trop étroite pour le libellé et les pastilles */}
+          <div className="@container flex flex-col gap-3">
             <h2 className={titreColonne}>{footer.colonnes.cv}</h2>
             {identite.cv.map((cv) => (
-              <a
+              <div
                 key={cv.fichier}
-                href={cv.fichier}
-                download
-                className="glass glass-sans-ombre flex items-center justify-between gap-3 rounded-[14px] px-3.5 py-[11px] text-[15px] text-text no-underline transition-[filter] hover:brightness-110"
+                className="glass glass-sans-ombre flex flex-col items-start gap-2 rounded-[14px] py-[9px] pl-3.5 pr-[7px] text-[15px] text-text @[270px]:flex-row @[270px]:items-center @[270px]:justify-between @[270px]:gap-3 @[270px]:py-[7px]"
               >
-                {cv.label}
-                <Download aria-hidden="true" size={18} strokeWidth={1.7} className="text-accent" />
-              </a>
+                <span className="whitespace-nowrap">{cv.label}</span>
+                <CvLiens cv={cv} />
+              </div>
             ))}
+            {LANGUE_CV === 'en' ? (
+              <p lang="en" className="m-0 font-mono text-[11px] tracking-[1px] text-text-muted">
+                {identite.cvSuggestionEN}
+              </p>
+            ) : null}
           </div>
         </div>
 

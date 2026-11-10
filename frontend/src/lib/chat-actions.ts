@@ -26,9 +26,12 @@ function lireCible(cible: string): string | null {
   const projet = /^projets\.galerie\[(\d+)\]\.lien\.url$/.exec(cible)
   if (projet) return contenu.projets.galerie.find((p) => p.num === projet[1])?.lien.url ?? null
 
-  // identite.cv[0].fichier : CV à l'index 0
-  const cv = /^identite\.cv\[(\d+)\]\.fichier$/.exec(cible)
-  if (cv) return contenu.identite.cv[Number(cv[1])]?.fichier ?? null
+  // identite.cv[0].fichier (français) ou identite.cv[0].fichierEN (anglais) : CV à l'index 0
+  const cv = /^identite\.cv\[(\d+)\]\.(fichier|fichierEN)$/.exec(cible)
+  if (cv) {
+    const entree = contenu.identite.cv[Number(cv[1])]
+    return (cv[2] === 'fichierEN' ? entree?.fichierEN : entree?.fichier) ?? null
+  }
 
   if (cible === 'projets.vedette.lienApplication') return contenu.projets.vedette.lienApplication
   if (cible === 'projets.vedette.video') return contenu.projets.vedette.video

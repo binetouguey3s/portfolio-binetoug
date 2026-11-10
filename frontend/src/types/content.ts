@@ -30,7 +30,12 @@ export interface Cv {
   label: string
   /** Chemin dans public/, ex. « /cv/CV_Binetou_Gueye_General.pdf » */
   fichier: string
+  /** Version anglaise, ex. « /cv/CV_Binetou_Gueye_General_EN.pdf » */
+  fichierEN: string
 }
+
+export type LangueCv = 'fr' | 'en'
+
 
 export interface Meta {
   titre: string
@@ -50,6 +55,12 @@ export interface Identite {
   linkedin: string
   disponibilite: string
   cv: Cv[]
+  /** Noms des langues (pastilles FR / EN) */
+  cvLangue: Record<LangueCv, string>
+  /** Mention affichée quand le navigateur n'est pas en français */
+  cvSuggestionEN: string
+  /** aria-label des pastilles : « {cv} » est remplacé par le libellé du CV */
+  cvTelecharger: Record<LangueCv, string>
 }
 
 export interface Hero {
@@ -202,6 +213,9 @@ export type ActionChatId =
   | 'cv-general'
   | 'cv-front'
   | 'cv-back'
+  | 'cv-general-en'
+  | 'cv-front-en'
+  | 'cv-back-en'
   | 'ecrire-email'
   | 'voir-projets'
   | 'voir-contact'

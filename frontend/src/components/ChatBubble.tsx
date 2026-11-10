@@ -10,7 +10,8 @@ import type { MessageChat } from '../lib/chat-contexte'
 export default function ChatBubble({ message }: { message: MessageChat }) {
   const estUtilisateur = message.role === 'utilisateur'
   const ecrit = message.affiche >= message.texte.length
-  const actions = !message.horsLigne && ecrit ? resoudreActions(message.actions) : []
+  // Hors ligne aussi : les actions de secours (CV) restent proposées
+  const actions = ecrit ? resoudreActions(message.actions) : []
 
   return (
     <>

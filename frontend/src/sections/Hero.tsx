@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import Button from '../components/Button'
 import Chip from '../components/Chip'
 import CvMenu from '../components/CvMenu'
+import { fichierCv, LANGUE_CV, libelleTelechargementCv } from '../lib/cv'
 import Halo from '../components/Halo'
 import Rings from '../components/Rings'
 import { useEstMobile } from '../hooks/useMediaQuery'
@@ -189,11 +190,18 @@ export default function Hero() {
             />
           </div>
 
-          {/* Puces CV (desktop) : téléchargement direct */}
+          {/* Puces CV (desktop) : téléchargement direct, dans la langue du navigateur */}
           <ul data-apparait className="m-0 hidden list-none flex-wrap gap-2.5 p-0 md:flex">
             {contenu.identite.cv.map((cv) => (
               <li key={cv.fichier}>
-                <a href={cv.fichier} download className="block rounded-pill no-underline">
+                <a
+                  href={fichierCv(cv, LANGUE_CV)}
+                  download
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={libelleTelechargementCv(cv, LANGUE_CV)}
+                  className="block rounded-pill no-underline"
+                >
                   <Chip variant="mono" className="transition-colors duration-200 hover:border-accent">
                     {cv.label}
                   </Chip>

@@ -17,10 +17,13 @@
     "linkedin": "https://linkedin.com/in/binetou-gueye-b70a31178",
     "disponibilite": "Disponible · CDI, CDD, stage, freelance",
     "cv": [
-      { "label": "CV Général", "fichier": "/cv/CV_Binetou_Gueye_General.pdf" },
-      { "label": "CV Front-End", "fichier": "/cv/CV_Binetou_Gueye_Front-End.pdf" },
-      { "label": "CV Back-End", "fichier": "/cv/CV_Binetou_Gueye_Back-End.pdf" }
-    ]
+      { "label": "CV Général", "fichier": "/cv/CV_Binetou_Gueye_General.pdf", "fichierEN": "/cv/CV_Binetou_Gueye_General_EN.pdf" },
+      { "label": "CV Front-End", "fichier": "/cv/CV_Binetou_Gueye_Front-End.pdf", "fichierEN": "/cv/CV_Binetou_Gueye_Front-End_EN.pdf" },
+      { "label": "CV Back-End", "fichier": "/cv/CV_Binetou_Gueye_Back-End.pdf", "fichierEN": "/cv/CV_Binetou_Gueye_Back-End_EN.pdf" }
+    ],
+    "cvLangue": { "fr": "Français", "en": "English" },
+    "cvSuggestionEN": "English version available",
+    "cvTelecharger": { "fr": "Télécharger le {cv} en français", "en": "Télécharger le {cv} en anglais" }
   },
   "navigation": [
     { "label": "À propos", "ancre": "#apropos" },
@@ -179,6 +182,9 @@
       { "id": "cv-general", "label": "Télécharger le CV Général", "cible": "identite.cv[0].fichier" },
       { "id": "cv-front", "label": "Télécharger le CV Front-End", "cible": "identite.cv[1].fichier" },
       { "id": "cv-back", "label": "Télécharger le CV Back-End", "cible": "identite.cv[2].fichier" },
+      { "id": "cv-general-en", "label": "Download General CV (English)", "cible": "identite.cv[0].fichierEN" },
+      { "id": "cv-front-en", "label": "Download Front-End CV (English)", "cible": "identite.cv[1].fichierEN" },
+      { "id": "cv-back-en", "label": "Download Back-End CV (English)", "cible": "identite.cv[2].fichierEN" },
       { "id": "ecrire-email", "label": "Écrire un email", "cible": "mailto:identite.email" },
       { "id": "voir-projets", "label": "Voir les projets", "cible": "#projets" },
       { "id": "voir-contact", "label": "Aller au contact", "cible": "#contact" }

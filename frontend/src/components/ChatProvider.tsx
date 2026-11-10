@@ -3,6 +3,7 @@ import { useReducedMotion } from '../hooks/useReducedMotion'
 import { Chat, type ContexteChat, type MessageChat } from '../lib/chat-contexte'
 import { demanderReponse, LONGUEUR_MAX_QUESTION } from '../lib/chat-service'
 import { contenu } from '../lib/content'
+import { ACTIONS_CV_HORS_LIGNE } from '../lib/cv'
 
 /** Effet machine à écrire : caractères ajoutés à chaque pas, et durée d'un pas */
 const CARACTERES_PAR_PAS = 2
@@ -69,7 +70,7 @@ export default function ChatProvider({ children }: { children: ReactNode }) {
           ])
         })
         .catch(() => {
-          // API indisponible : message de repli, sans boutons d'action
+          // API indisponible : message de repli, avec le CV Général en français et en anglais
           setMessages((liste) => [
             ...liste,
             {
@@ -78,6 +79,7 @@ export default function ChatProvider({ children }: { children: ReactNode }) {
               texte: chatbot.horsLigne,
               affiche: 0,
               horsLigne: true,
+              actions: [...ACTIONS_CV_HORS_LIGNE],
             },
           ])
         })

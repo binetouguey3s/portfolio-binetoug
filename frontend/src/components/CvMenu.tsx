@@ -1,7 +1,9 @@
 import { useEffect, useId, useRef, useState } from 'react'
-import { ChevronDown, Download } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import Button from './Button'
+import CvLiens from './CvLiens'
 import { contenu } from '../lib/content'
+import { LANGUE_CV } from '../lib/cv'
 
 type CvMenuProps = {
   /** Texte du bouton (contenu.json : hero.ctaSecondaire) */
@@ -86,24 +88,24 @@ export default function CvMenu({
       <div
         id={idListe}
         hidden={!ouvert}
-        className="absolute left-0 top-[calc(100%+10px)] z-20 w-full min-w-[260px] rounded-[24px] border border-glass-border bg-bg-2 p-2 shadow-glass"
+        className="absolute left-0 top-[calc(100%+10px)] z-20 w-full min-w-[300px] rounded-[24px] border border-glass-border bg-bg-2 p-2 shadow-glass"
       >
         <ul className="m-0 flex list-none flex-col gap-1 p-0">
           {contenu.identite.cv.map((cv) => (
-            <li key={cv.fichier}>
-              <a
-                data-cv
-                href={cv.fichier}
-                download
-                onClick={() => setOuvert(false)}
-                className="flex items-center justify-between gap-4 rounded-[16px] px-4 py-3 text-[15px] text-text no-underline transition-colors duration-200 hover:bg-surface focus-visible:bg-surface"
-              >
-                {cv.label}
-                <Download aria-hidden="true" size={16} strokeWidth={1.8} className="text-accent" />
-              </a>
+            <li
+              key={cv.fichier}
+              className="flex items-center justify-between gap-3 rounded-[16px] py-2 pl-4 pr-2 text-[15px] text-text"
+            >
+              <span className="whitespace-nowrap">{cv.label}</span>
+              <CvLiens cv={cv} onChoisir={() => setOuvert(false)} />
             </li>
           ))}
         </ul>
+        {LANGUE_CV === 'en' ? (
+          <p lang="en" className="m-0 px-4 pb-2 pt-1 font-mono text-[11px] tracking-[1px] text-text-muted">
+            {contenu.identite.cvSuggestionEN}
+          </p>
+        ) : null}
       </div>
     </div>
   )
