@@ -81,8 +81,8 @@ export default function FeaturedProject({ vedette }: { vedette: ProjetVedette })
         ouverte={videoOuverte}
         surFermeture={() => setVideoOuverte(false)}
         titre={vedette.nom}
-        video={vedette.video}
-        affiche={vedette.videoAffiche}
+        paysage={{ video: vedette.video, affiche: vedette.videoAffiche }}
+        portrait={{ video: vedette.videoMobile, affiche: vedette.videoAfficheMobile }}
       />
     </article>
   )

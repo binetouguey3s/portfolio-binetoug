@@ -105,8 +105,12 @@ export interface ProjetVedette {
   piliers: string
   logo: { sombre: string; clair: string }
   lienApplication: string
+  /** Vidéo horizontale 16:9 (écrans larges) */
   video: string
+  /** Vidéo verticale 9:16 (téléphone tenu à la verticale) */
+  videoMobile: string
   videoAffiche: string
+  videoAfficheMobile: string
   /** Texte des boutons de la carte vedette (maquette) */
   boutonApplication: string
   boutonVideo: string

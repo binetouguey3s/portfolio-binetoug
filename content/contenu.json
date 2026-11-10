@@ -90,8 +90,10 @@
       "piliers": "PRÉVENTION · SUIVI · ORIENTATION",
       "logo": { "sombre": "/images/projets/sensuivi-logo-sombre.png", "clair": "/images/projets/sensuivi-logo-clair.png" },
       "lienApplication": "A_COMPLETER",
-      "video": "/videos/sensuivi-presentation-720p.mp4",
-      "videoAffiche": "/videos/sensuivi-presentation-affiche.jpg",
+      "video": "/videos/sensuivi-presentation-16x9.mp4",
+      "videoMobile": "/videos/sensuivi-presentation-9x16.mp4",
+      "videoAffiche": "/videos/sensuivi-affiche-16x9.jpg",
+      "videoAfficheMobile": "/videos/sensuivi-affiche-9x16.jpg",
       "boutonApplication": "Voir l'application ↗",
       "boutonVideo": "Vidéo de présentation ▶"
     },
