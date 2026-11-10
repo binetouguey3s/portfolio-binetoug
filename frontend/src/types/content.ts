@@ -175,6 +175,7 @@ export interface Methode {
   texte: string
   etapes: EtapeMethode[]
   terminal: Terminal
+  engagementsTitre: string
   engagements: Engagement[]
 }
 

@@ -158,6 +158,21 @@ body {
     }
   }
 
+  /* Curseur du terminal qui clignote (immobile si mouvement réduit) */
+  .curseur {
+    animation: clignote 1.05s steps(1, end) infinite;
+  }
+  @keyframes clignote {
+    50% {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .curseur {
+      animation: none;
+    }
+  }
+
   /* Fond de la fenêtre vidéo */
   .modale-video::backdrop {
     background: color-mix(in srgb, var(--bg) 82%, transparent);

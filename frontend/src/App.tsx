@@ -3,6 +3,7 @@ import Preloader from './components/Preloader'
 import { useLenis } from './hooks/useLenis'
 import About from './sections/About'
 import Hero from './sections/Hero'
+import Method from './sections/Method'
 import Navbar, { ID_CONTENU } from './sections/Navbar'
 import Projects from './sections/Projects'
 import Skills from './sections/Skills'
@@ -35,8 +36,7 @@ function App() {
 
           <Projects />
 
-          {/* 04 · Ma méthode (étape 8) */}
-          <section id="methode" className="min-h-[80vh] bg-contrast-bg text-contrast-text" />
+          <Method />
 
           {/* 05 · Binetou IA (étape 9) */}
           <section id="ia" className="min-h-[80vh] bg-bg" />

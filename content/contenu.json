@@ -134,6 +134,7 @@
       "noteCommande": "Adresse générée automatiquement : VITE_API_URL suivie de /api/profil/ (ex. http://localhost:8000/api/profil/ en local, https://portfolio-binetou-api.vercel.app/api/profil/ en production). Si VITE_API_URL est absente, on affiche commandeSansApi. Avec un nom de domaine plus tard, il suffit de changer VITE_API_URL.",
       "note": "La réponse affichée doit venir du vrai endpoint GET /api/profil/ de Django (repli : le JSON ci-dessous)."
     },
+    "engagementsTitre": "MES ENGAGEMENTS",
     "engagements": [
       { "num": "i.", "titre": "Un code lisible et documenté", "texte": "Pour que l'équipe qui reprend le projet s'y retrouve." },
       { "num": "ii.", "titre": "Des interfaces pour tout le monde", "texte": "Accessibles, rapides, pensées d'abord pour le mobile." },
