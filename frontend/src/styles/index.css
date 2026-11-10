@@ -226,6 +226,24 @@ body {
     }
   }
 
+  /* Bandeaux d'outils : défilement infini (contenu dupliqué, 0 → −50 %) */
+  .marquee-piste {
+    animation: marquee 60s linear infinite;
+  }
+  .marquee-droite {
+    animation-direction: reverse;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-piste {
+      animation: none;
+    }
+  }
+
   /* Fond de la fenêtre vidéo */
   .modale-video::backdrop {
     background: color-mix(in srgb, var(--bg) 82%, transparent);

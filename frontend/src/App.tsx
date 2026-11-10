@@ -7,18 +7,19 @@ import { useLenis } from './hooks/useLenis'
 import About from './sections/About'
 import Chatbot from './sections/Chatbot'
 import Contact from './sections/Contact'
+import Footer from './sections/Footer'
 import Hero from './sections/Hero'
 import Method from './sections/Method'
 import Navbar, { ID_CONTENU } from './sections/Navbar'
 import Projects from './sections/Projects'
 import Skills from './sections/Skills'
 import Stats from './sections/Stats'
+import ToolsMarquee from './sections/ToolsMarquee'
 
 /**
- * Squelette de la page (une seule page, ancres), dans l'ordre du cahier des charges.
- * Les sections sont encore vides : chacune sera remplacée par son composant
- * (src/sections/) aux étapes 4 à 11. La hauteur minimale (min-h-[80vh])
- * est temporaire, pour pouvoir tester le défilement et le menu.
+ * Page unique (ancres), dans l'ordre du cahier des charges :
+ * accueil, chiffres, à propos, compétences, projets, méthode, Binetou IA,
+ * contact, bandeaux d'outils, footer. Chaque section est dans src/sections/.
  */
 function App() {
   useLenis()
@@ -46,13 +47,10 @@ function App() {
           <Chatbot />
 
           <Contact />
-
-          {/* Bandeaux d'outils : moitié --contact-bg, moitié --bg (étape 11) */}
-          <section aria-hidden="true" className="h-[330px] bg-[linear-gradient(180deg,var(--contact-bg)_48%,var(--bg)_48%)]" />
+          <ToolsMarquee />
         </main>
 
-        {/* Footer (étape 11) */}
-        <footer className="min-h-[50vh] bg-bg" />
+        <Footer />
 
         {/* Bulle Binetou IA flottante (inerte avec le reste quand le menu mobile est ouvert) */}
         <ChatLauncher />
