@@ -91,7 +91,9 @@
       "logo": { "sombre": "/images/projets/sensuivi-logo-sombre.png", "clair": "/images/projets/sensuivi-logo-clair.png" },
       "lienApplication": "A_COMPLETER",
       "video": "/videos/sensuivi-presentation-720p.mp4",
-      "videoAffiche": "/videos/sensuivi-presentation-affiche.jpg"
+      "videoAffiche": "/videos/sensuivi-presentation-affiche.jpg",
+      "boutonApplication": "Voir l'application ↗",
+      "boutonVideo": "Vidéo de présentation ▶"
     },
     "galerie": [
       { "num": "01", "nom": "Andë Sétal", "meta": "Lead back-end · Mairie de Dakar Plateau", "domaine": "CIVIC-TECH", "description": "Plateforme civic-tech de signalement d'incidents et de gestion de la salubrité urbaine, livrée en 8 jours.", "stack": ["Django 5", "DRF", "MySQL", "Docker"], "lien": { "label": "GitHub ↗", "url": "https://github.com/AndeSetale/Backend_AndeSetale" } },
@@ -102,6 +104,7 @@
       { "num": "06", "nom": "SenAgroLink", "meta": "Développement web · En ligne", "domaine": "AGRITECH · E-COMMERCE", "description": "Plateforme qui relie directement agriculteurs et consommateurs : boutiques en ligne, prix du marché, livraison et traçabilité des produits.", "stack": ["HTML", "CSS", "JavaScript", "PHP", "Python"], "lien": { "label": "Voir le site ↗", "url": "https://senagrolink.vercel.app/" } },
       { "num": "07", "nom": "AfriStory", "meta": "UI/UX · Hackathon JOJ Dakar 2026", "domaine": "CULTURE · FINTECH", "description": "Réseau social culturel multilingue (wolof, diola, pulaar, sérère) où les créateurs sont rémunérés en FCFA via Orange Money.", "stack": ["Figma", "React Native", "Node.js", "Orange Money API"], "lien": { "label": "Voir le prototype ↗", "url": "https://shape-cyprus-02393842.figma.site/" } }
     ],
+    "autresTitre": "AUTRES RÉALISATIONS",
     "autres": [
       { "nom": "Eco-Stock", "detail": "API REST Django", "url": "https://github.com/binetouguey3s/Eco-Stock" },
       { "nom": "KeurÉtudiant", "detail": "Scrum Master" },

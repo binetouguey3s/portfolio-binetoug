@@ -158,6 +158,20 @@ body {
     }
   }
 
+  /* Fond de la fenêtre vidéo */
+  .modale-video::backdrop {
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Galerie mobile : défilement au doigt sans barre visible */
+  .sans-barre {
+    scrollbar-width: none;
+  }
+  .sans-barre::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Grain plein écran (texture de bruit, calculée une seule fois) */
   .grain {
     position: fixed;

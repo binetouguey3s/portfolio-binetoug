@@ -107,6 +107,9 @@ export interface ProjetVedette {
   lienApplication: string
   video: string
   videoAffiche: string
+  /** Texte des boutons de la carte vedette (maquette) */
+  boutonApplication: string
+  boutonVideo: string
 }
 
 export interface ProjetGalerie {
@@ -133,6 +136,7 @@ export interface Projets {
   _noteLiens: string
   vedette: ProjetVedette
   galerie: ProjetGalerie[]
+  autresTitre: string
   autres: AutreRealisation[]
 }
 

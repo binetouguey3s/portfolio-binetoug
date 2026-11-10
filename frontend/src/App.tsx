@@ -4,6 +4,7 @@ import { useLenis } from './hooks/useLenis'
 import About from './sections/About'
 import Hero from './sections/Hero'
 import Navbar, { ID_CONTENU } from './sections/Navbar'
+import Projects from './sections/Projects'
 import Skills from './sections/Skills'
 import Stats from './sections/Stats'
 
@@ -32,8 +33,7 @@ function App() {
 
           <Skills />
 
-          {/* 03 · Projets (étape 7) */}
-          <section id="projets" className="min-h-[80vh] bg-bg-2" />
+          <Projects />
 
           {/* 04 · Ma méthode (étape 8) */}
           <section id="methode" className="min-h-[80vh] bg-contrast-bg text-contrast-text" />
