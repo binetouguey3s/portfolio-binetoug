@@ -1,6 +1,7 @@
 /**
  * Cernes de bois en SVG (le motif du logo), en trois variantes reprises de la maquette :
  * - portrait   : autour de la photo de l'accueil (viewBox 540 × 540)
+ * - portraitMobile : version mobile de la capture 05 (viewBox 300 × 300)
  * - couverture : couvertures des cartes de projets (380 × 210), tournées selon « rotation »
  * - angle      : cercles concentriques partant d'un coin (carte vedette Sen Suivi)
  * Les couleurs viennent des variables CSS : elles changent avec le mode.
@@ -8,7 +9,7 @@
  */
 
 type RingsProps = {
-  variant?: 'portrait' | 'couverture' | 'angle'
+  variant?: 'portrait' | 'portraitMobile' | 'couverture' | 'angle'
   /** Rotation en degrés (variante couverture : 40° de plus par carte) */
   rotation?: number
   className?: string
@@ -31,6 +32,21 @@ export default function Rings({ variant = 'portrait', rotation = 0, className = 
     )
   }
 
+  if (variant === 'portraitMobile') {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 300 300" data-centre="150 150" className={`${base} ${className}`}>
+        <g fill="none">
+          <circle data-cerne="exterieur" cx="150" cy="150" r="146" className="stroke-surface" />
+          <circle data-cerne="pointilles" cx="150" cy="150" r="126" className="stroke-border" strokeDasharray="2 8" />
+          <g data-cerne="arc">
+            <path d="M150 44 A106 106 0 1 1 56 100" className="stroke-accent" strokeWidth="2.2" strokeLinecap="round" />
+            <circle cx="56" cy="100" r="5" className="fill-text stroke-none" />
+          </g>
+        </g>
+      </svg>
+    )
+  }
+
   if (variant === 'angle') {
     return (
       <svg aria-hidden="true" viewBox="0 0 400 400" className={`${base} opacity-50 ${className}`}>
@@ -46,7 +62,7 @@ export default function Rings({ variant = 'portrait', rotation = 0, className = 
 
   // portrait
   return (
-    <svg aria-hidden="true" viewBox="0 0 540 540" className={`${base} ${className}`}>
+    <svg aria-hidden="true" viewBox="0 0 540 540" data-centre="270 270" className={`${base} ${className}`}>
       <g fill="none">
         <circle data-cerne="exterieur" cx="270" cy="270" r="262" className="stroke-surface" strokeWidth="1" />
         <circle data-cerne="pointilles" cx="270" cy="270" r="232" className="stroke-border" strokeWidth="1.5" strokeDasharray="2 10" />

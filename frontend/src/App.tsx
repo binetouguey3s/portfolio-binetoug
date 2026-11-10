@@ -1,5 +1,7 @@
 import Grain from './components/Grain'
+import Preloader from './components/Preloader'
 import { useLenis } from './hooks/useLenis'
+import Hero from './sections/Hero'
 import Navbar, { ID_CONTENU } from './sections/Navbar'
 
 /**
@@ -13,14 +15,14 @@ function App() {
 
   return (
     <>
+      <Preloader />
       <Grain />
       <Navbar />
 
       {/* Tout sauf le menu : rendu inerte quand le menu mobile est ouvert */}
       <div id={ID_CONTENU}>
         <main>
-          {/* Accueil (étape 4) — le haut laisse la place au menu flottant */}
-          <section id="accueil" className="min-h-dvh bg-bg pt-28 xl:pt-[132px]" />
+          <Hero />
 
           {/* Bande de chiffres, panneau en verre (étape 5) */}
           <section aria-hidden="true" className="bg-bg" />
