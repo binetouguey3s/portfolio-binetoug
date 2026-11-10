@@ -1,8 +1,10 @@
 import Grain from './components/Grain'
 import Preloader from './components/Preloader'
 import { useLenis } from './hooks/useLenis'
+import About from './sections/About'
 import Hero from './sections/Hero'
 import Navbar, { ID_CONTENU } from './sections/Navbar'
+import Stats from './sections/Stats'
 
 /**
  * Squelette de la page (une seule page, ancres), dans l'ordre du cahier des charges.
@@ -24,11 +26,8 @@ function App() {
         <main>
           <Hero />
 
-          {/* Bande de chiffres, panneau en verre (étape 5) */}
-          <section aria-hidden="true" className="bg-bg" />
-
-          {/* 01 · À propos (étape 5) */}
-          <section id="apropos" className="min-h-[80vh] bg-contrast-bg text-contrast-text" />
+          <Stats />
+          <About />
 
           {/* 02 · Compétences, l'arbre (étape 6) */}
           <section id="arbre" className="min-h-[80vh] bg-bg" />

@@ -13,6 +13,8 @@ type SectionHeadingProps = {
   as?: 'h1' | 'h2' | 'h3'
   /** id du titre, pour aria-labelledby sur la section */
   id?: string
+  /** Espace entre le numéro et le titre (classe gap-*, 18 px par défaut) */
+  espace?: string
   className?: string
   children?: ReactNode
 }
@@ -27,13 +29,14 @@ export default function SectionHeading({
   ton = 'default',
   as: Balise = 'h2',
   id,
+  espace = 'gap-[18px]',
   className = '',
   children,
 }: SectionHeadingProps) {
   const couleurAccent = ton === 'contrast' ? 'text-contrast-label' : 'text-accent'
 
   return (
-    <div className={`flex flex-col gap-[18px] ${className}`}>
+    <div className={`flex flex-col ${espace} ${className}`}>
       <p className={`m-0 font-mono text-[13px] tracking-[3px] ${couleurAccent}`}>{numero}</p>
       <Balise
         id={id}

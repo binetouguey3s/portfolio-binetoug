@@ -228,8 +228,8 @@ export default function Hero() {
             <img
               src="/images/portrait-accueil.jpg"
               alt="Portrait de Binetou Gueye"
-              width={600}
-              height={600}
+              width={900}
+              height={900}
               fetchPriority="high"
               decoding="async"
               className="absolute left-1/2 top-1/2 aspect-square w-[62.7%] -translate-1/2 rounded-full border-2 border-glow object-cover object-[50%_20%] md:w-[53.7%]"
