@@ -11,6 +11,8 @@ Ce dossier contient **tout** ce dont Claude Code a besoin pour coder ton portfol
 | `docs/03-architecture.md` | Dossiers, API Django, chatbot, repli hors ligne, hébergement |
 | `docs/04-prompts-claude-code.md` | **Les prompts à copier-coller, étape par étape** |
 | `docs/05-deploiement.md` | Comptes, variables d'environnement, Neon, Vercel, check-list |
+| `docs/06-recette.md` | Recette du site en production, reste à faire, historique des vérifications |
+| `docs/07-guide-du-projet.md` | **Comprendre et faire évoluer le projet** : fonctionnement, tâches courantes, commandes, pièges |
 | `content/contenu.json` | Tous les textes validés du site |
 | `content/base-connaissances-chatbot.md` | Ce que sait « Binetou IA » |
 | `design/tokens.css` | Variables CSS des modes sombre et clair |
