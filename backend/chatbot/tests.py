@@ -19,6 +19,7 @@ from portfolio.contenu import lire_contenu
 from .actions import REGLES, choisir_actions, identifiants_autorises
 from .base import construire_texte_base, decouper_base, message_systeme
 from .base import TOKENS_BASE_MAX
+from .liens import retirer_liens_inventes, urls_autorisees
 from .groq import DELAI_SECONDES, JETONS_REPONSE_MAX, TEMPERATURE, estimer_tokens, options_du_modele, texte_simple
 
 GROQ_TEST = {"GROQ_API_KEY": "cle-de-test", "GROQ_MODEL": "modele-de-test", "GROQ_MODEL_SECOURS": "secours-de-test"}
@@ -185,8 +186,42 @@ class ActionsTests(SimpleTestCase):
     def test_cv_anglais_dans_la_liste_blanche(self):
         self.assertTrue({"cv-general-en", "cv-front-en", "cv-back-en"} <= identifiants_autorises())
 
+    def test_cv_demande_avec_un_mot_court(self):
+        self.assertEqual(choisir_actions("je veux le cv front"), ["cv-front"])
+        self.assertEqual(choisir_actions("donne-moi le cv back"), ["cv-back"])
+        self.assertEqual(choisir_actions("donne le lien du cv"), ["cv-general"])
+
     def test_regles_n_utilisent_que_des_identifiants_de_contenu_json(self):
         self.assertTrue({ident for ident, _ in REGLES} <= identifiants_autorises())
+
+
+class LiensTests(SimpleTestCase):
+    def test_liens_inventes_retires_liens_reels_gardes(self):
+        base = message_systeme()
+        reponse = (
+            "Voici le lien pour télécharger le CV général de Binetou :\n"
+            "[CV Général – Binetou Gueye](https://www.binetougueye.com/cv-general.pdf)\n\n"
+            "Vous pouvez aussi choisir un CV spécialisé :\n"
+            "- Front‑End : https://www.binetougueye.com/cv-front-end.pdf\n"
+            "Son GitHub : https://github.com/binetouguey3s. LinkedIn : linkedin.com/in/binetou-gueye-b70a31178.\n"
+            "Écrivez à binetouguey3s@gmail.com."
+        )
+        nettoyee = retirer_liens_inventes(reponse, urls_autorisees(base))
+        self.assertNotIn("binetougueye.com", nettoyee)
+        self.assertNotIn("Front‑End :", nettoyee)  # ligne vidée par le retrait : supprimée
+        self.assertIn("CV Général – Binetou Gueye", nettoyee)
+        self.assertIn("https://github.com/binetouguey3s.", nettoyee)
+        self.assertIn("linkedin.com/in/binetou-gueye-b70a31178.", nettoyee)
+        self.assertIn("binetouguey3s@gmail.com", nettoyee)
+
+    @override_settings(**GROQ_TEST)
+    def test_la_vue_filtre_les_liens(self):
+        message_systeme.cache_clear()
+        cache.clear()
+        with patch("chatbot.groq.httpx.post", return_value=reponse_groq("CV : https://faux-site.com/cv.pdf")):
+            reponse = APIClient().post("/api/chat/", {"message": "donne le lien du cv"}, format="json")
+        self.assertNotIn("faux-site", reponse.json()["reponse"])
+        self.assertEqual(reponse.json()["actions"], ["cv-general"])
 
 
 class GroqOutilsTests(SimpleTestCase):

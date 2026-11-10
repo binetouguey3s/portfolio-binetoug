@@ -57,7 +57,9 @@ def _complements(c: dict[str, Any], deja: str) -> list[str]:
     vedette = projets["vedette"]
     faits: list[str] = []
 
-    chiffres = [f"{ch['valeur']} {ch['libelle'].split(' : ')[0].lower()}" for ch in c["chiffres"] if ch["valeur"].isdigit()]
+    # Chiffres sans détail (« 10 projets conçus et livrés ») : ceux avec détail (« Startup fondée : … »,
+    # « Langues : … ») répètent des informations déjà présentes dans le fichier de Binetou
+    chiffres = [f"{ch['valeur']} {ch['libelle'].lower()}" for ch in c["chiffres"] if ch["valeur"].isdigit() and " : " not in ch["libelle"]]
     if chiffres:
         faits.append(f"Chiffres du site : {', '.join(chiffres)}.")
 
@@ -70,20 +72,29 @@ def _complements(c: dict[str, Any], deja: str) -> list[str]:
 
     tous = [(p["nom"], p["description"], p["lien"]["url"]) for p in projets["galerie"]]
     tous += [(a["nom"], a["detail"], a.get("url", "")) for a in projets["autres"]]
-    absents = [f"{nom} ({detail.rstrip('.')})" for nom, detail, _ in tous if _cle(nom) not in deja]
+    # Projets absents du fichier de Binetou : nom, détail et lien sur une seule ligne (pas de nom répété)
+    absents = [(nom, detail, url) for nom, detail, url in tous if _cle(nom) not in deja]
     if absents:
-        faits.append(f"Autres projets : {' ; '.join(absents)}.")
-    liens = [f"{nom} {_url_courte(url)}" for nom, _, url in tous if lien_valide(url) and _cle(_url_courte(url)) not in deja]
+        faits.append(
+            "Autres projets : "
+            + " ; ".join(f"{n} ({d.rstrip('.')})" + (f" {_url_courte(u)}" if lien_valide(u) else "") for n, d, u in absents)
+            + "."
+        )
+    noms_absents = {nom for nom, _, _ in absents}
+    liens = [
+        f"{nom} {_url_courte(url)}"
+        for nom, _, url in tous
+        if nom not in noms_absents and lien_valide(url) and _cle(_url_courte(url)) not in deja
+    ]
     if liens:
         faits.append(f"Liens des projets : {' ; '.join(liens)}.")
 
     methode = c["methode"]
-    etapes = [f"{e['titre']} ({', '.join(e['tags'])})" for e in methode["etapes"]]
-    faits.append(f"Méthode : {' → '.join(etapes)}.")
+    # Les étapes seulement : leurs outils (UML, Figma, Docker…) sont déjà dans les compétences
+    faits.append(f"Méthode : {' → '.join(e['titre'] for e in methode['etapes'])}.")
     faits.append(f"Engagements : {' ; '.join(e['titre'] for e in methode['engagements'])}.")
 
-    cv = ", ".join(x["label"].removeprefix("CV ") for x in c["identite"]["cv"])
-    faits.append(f"Sur le site : formulaire de contact et CV à télécharger ({cv}).")
+    faits.append("Sur le site : formulaire de contact et boutons de téléchargement des CV.")
 
     outils: list[str] = []
     deja_colle = deja.replace(" ", "")

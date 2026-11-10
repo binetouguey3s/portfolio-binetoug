@@ -26,12 +26,12 @@ REGLES: list[tuple[str, list[str]]] = [
     ("voir-afristory", ["afristory", "orange money", "hackathon"]),
     (
         "cv-back",
-        ["back-end", "backend", "back end", "django", "drf", "fastapi", "api", "apis", "python",
+        ["back-end", "backend", "back end", "back", "django", "drf", "fastapi", "api", "apis", "python",
          "serveur", "base de donnees", "postgresql", "postgres", "mysql", "docker", "nginx"],
     ),
     (
         "cv-front",
-        ["front-end", "frontend", "front end", "angular", "react", "typescript", "javascript",
+        ["front-end", "frontend", "front end", "front", "angular", "react", "typescript", "javascript",
          "tailwind", "tailwindcss", "interface", "interfaces", "ui", "ux", "figma", "flutter", "mobile"],
     ),
     (

@@ -11,6 +11,7 @@ from portfolio.contenu import lire_contenu
 from .actions import choisir_actions
 from .base import BaseIndisponible, message_systeme
 from .groq import ModeleIndisponible, demander_au_modele
+from .liens import retirer_liens_inventes, urls_autorisees
 from .serializers import ChatSerializer
 
 journal = logging.getLogger(__name__)
@@ -46,8 +47,9 @@ class ChatView(APIView):
 
         question = serializer.validated_data["message"]
         try:
+            systeme = message_systeme()
             messages = [
-                {"role": "system", "content": message_systeme()},
+                {"role": "system", "content": systeme},
                 *serializer.historique_pour_groq(),
                 {"role": "user", "content": question},
             ]
@@ -56,4 +58,6 @@ class ChatView(APIView):
             journal.warning("Chatbot indisponible : %s", erreur)
             return Response({"erreur": _message_hors_ligne()}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
 
+        # Filet de sécurité : aucune adresse web absente de la base ne sort (les CV passent par les boutons)
+        reponse = retirer_liens_inventes(reponse, urls_autorisees(systeme))
         return Response({"reponse": reponse, "actions": choisir_actions(question)})
