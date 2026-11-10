@@ -152,7 +152,7 @@ export default function Hero() {
         <div className="relative z-[2] flex min-w-0 flex-col gap-3.5 md:gap-7 lg:flex-[1_1_520px]">
           <p
             data-apparait
-            className="m-0 flex items-center gap-3 font-mono text-[11px] tracking-[2px] text-accent md:text-[13px]"
+            className="m-0 flex items-center gap-3 font-mono text-[11px] tracking-[2px] text-accent md:text-[13px] md:whitespace-nowrap lg:text-[12px] lg:tracking-[1.5px] xl:text-[13px] xl:tracking-[2px]"
           >
             <span aria-hidden="true" className="hidden h-px w-9 bg-accent md:block" />
             {estMobile ? hero.surtitreMobile : hero.surtitre}

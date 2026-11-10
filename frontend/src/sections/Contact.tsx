@@ -215,6 +215,9 @@ export default function Contact() {
           noValidate
           onSubmit={soumettre}
           aria-busy={etat === 'envoi'}
+          // Verre un peu plus couvrant que .glass (comme la maquette : 45 % en sombre, 60 % en clair) :
+          // le halo derrière le formulaire ne fait plus passer les labels sous le contraste AA
+          style={{ background: 'color-mix(in srgb, var(--bg) 60%, transparent)' }}
           className="relative flex min-w-0 flex-col gap-[18px] p-6 md:p-9 lg:flex-[1_1_420px]"
         >
           <div className="flex flex-col gap-2">

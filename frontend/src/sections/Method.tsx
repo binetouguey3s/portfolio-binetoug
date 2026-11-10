@@ -195,7 +195,7 @@ export default function Method() {
                     i < methode.engagements.length - 1 ? 'border-b border-contrast-border' : ''
                   }`}
                 >
-                  <p aria-hidden="true" className="m-0 w-[34px] shrink-0 font-display text-[22px] text-glow">
+                  <p aria-hidden="true" className="m-0 w-[34px] shrink-0 font-display text-[22px] text-contrast-label">
                     {engagement.num}
                   </p>
                   <div className="flex flex-col gap-1">

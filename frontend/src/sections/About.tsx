@@ -52,7 +52,7 @@ export default function About() {
     >
       <div className="mx-auto flex max-w-[1280px] flex-col gap-12 px-[22px] py-[72px] md:px-10 lg:flex-row lg:items-center lg:gap-[72px] lg:px-16 lg:py-[120px]">
         {/* Photo en arche + citation qui déborde */}
-        <div className="relative min-w-0 lg:flex-[1_1_380px]">
+        <div className="relative mx-auto w-full min-w-0 max-w-[460px] lg:mx-0 lg:max-w-none lg:flex-[1_1_380px]">
           <div data-photo className="overflow-hidden rounded-[200px_200px_28px_28px]">
             <img
               src="/images/portrait-apropos.jpg"

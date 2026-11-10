@@ -55,10 +55,13 @@ export default function ProjectCard({ projet, index, className = '' }: ProjectCa
     <article
       ref={carte}
       data-carte-projet
+      // Verre un peu plus couvrant que .glass : les petits textes accent restent au-dessus
+      // du contraste AA même quand un halo passe derrière la carte
+      style={{ background: 'color-mix(in srgb, var(--bg) 55%, transparent)' }}
       className={`glass flex shrink-0 flex-col overflow-hidden rounded-card ${className}`}
     >
       <div className="relative flex h-[180px] items-center justify-center overflow-hidden bg-surface/60 md:h-[210px]">
-        <p className="absolute left-[22px] top-[18px] z-[1] m-0 font-display text-[40px] leading-none text-glow">
+        <p className="absolute left-[22px] top-[18px] z-[1] m-0 font-display text-[40px] leading-none text-accent">
           {projet.num}
         </p>
         <Rings variant="couverture" rotation={index * 40} />
