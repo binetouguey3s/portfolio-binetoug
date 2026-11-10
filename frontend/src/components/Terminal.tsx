@@ -65,7 +65,7 @@ function mettreEnForme(objet: Record<string, unknown>, retrait = 2): Ligne[] {
 
 type TerminalProps = {
   donnees: DonneesTerminal
-  /** Réponse JSON affichée (profilApi de contenu.json ; l'API Django sera branchée à l'étape 15) */
+  /** Réponse JSON affichée : GET /api/profil/, ou profilApi de contenu.json si l'API ne répond pas */
   profil: ProfilApi
 }
 

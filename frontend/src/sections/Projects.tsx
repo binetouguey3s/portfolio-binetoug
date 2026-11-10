@@ -1,12 +1,14 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import FeaturedProject from '../components/FeaturedProject'
 import Halo from '../components/Halo'
 import ProjectCard from '../components/ProjectCard'
 import SectionHeading from '../components/SectionHeading'
+import { useDonneesApi } from '../hooks/useDonneesApi'
 import { contenu } from '../lib/content'
 import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap'
 import { obtenirLenis } from '../lib/lenis'
 import { LIEN_EXTERNE, lienValide } from '../lib/liens'
+import { chargerGalerie } from '../lib/projets-service'
 
 /**
  * 03 · Projets (captures 01-…-03/04/05 et 03-…-03/04/05).
@@ -21,6 +23,13 @@ export default function Projects() {
   const section = useRef<HTMLElement>(null)
   const galerie = useRef<HTMLDivElement>(null)
   const piste = useRef<HTMLDivElement>(null)
+  // Projets de l'admin Django (GET /api/projets/) ; repli : projets.galerie de contenu.json
+  const galerieProjets = useDonneesApi(chargerGalerie, projets.galerie)
+
+  // La liste vient de changer (réponse de l'API) : la longueur du défilement horizontal est recalculée
+  useEffect(() => {
+    if (galerieProjets !== projets.galerie) ScrollTrigger.refresh()
+  }, [galerieProjets, projets.galerie])
 
   useGSAP(
     () => {
@@ -127,7 +136,7 @@ export default function Projects() {
           ref={piste}
           className="flex w-max gap-4 px-[22px] md:gap-6 md:px-10 lg:pl-[max(64px,calc((100vw-1280px)/2+64px))] lg:pr-16"
         >
-          {projets.galerie.map((projet, i) => (
+          {galerieProjets.map((projet, i) => (
             <ProjectCard
               key={projet.num}
               projet={projet}

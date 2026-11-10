@@ -3,7 +3,7 @@ import { LoaderCircle } from 'lucide-react'
 import Glass from '../components/Glass'
 import Halo from '../components/Halo'
 import SectionHeading from '../components/SectionHeading'
-import { envoyerMessageContact, LIMITES_CONTACT } from '../lib/contact-service'
+import { envoyerMessageContact, ErreurChampsContact, LIMITES_CONTACT } from '../lib/contact-service'
 import { contenu } from '../lib/content'
 import { gsap, useGSAP } from '../lib/gsap'
 import { LIEN_EXTERNE } from '../lib/liens'
@@ -128,7 +128,16 @@ export default function Contact() {
       })
       formulaire.reset()
       setEtat('succes')
-    } catch {
+    } catch (erreur) {
+      // Champ refusé par Django : même affichage qu'une erreur détectée ici
+      if (erreur instanceof ErreurChampsContact) {
+        setErreurs(erreur.erreurs)
+        setEtat('repos')
+        const champ = ORDRE_CHAMPS.find((c) => erreur.erreurs[c])
+        if (champ) formulaire.querySelector<HTMLElement>(`[name="${champ}"]`)?.focus()
+        return
+      }
+      // API hors ligne, limite atteinte… : message d'erreur avec lien mailto
       setEtat('erreur')
     }
   }

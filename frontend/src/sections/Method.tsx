@@ -1,7 +1,9 @@
 import { useRef } from 'react'
+import { useDonneesApi } from '../hooks/useDonneesApi'
 import SectionHeading from '../components/SectionHeading'
 import Terminal from '../components/Terminal'
 import { contenu } from '../lib/content'
+import { chargerProfil } from '../lib/profil-service'
 import { gsap, useGSAP } from '../lib/gsap'
 
 /** Icônes des 4 étapes (tracés de la maquette) : graine, racines, tronc, fruit */
@@ -37,6 +39,8 @@ const ICONES = [
  */
 export default function Method() {
   const { methode, profilApi } = contenu
+  // Réponse du vrai GET /api/profil/ ; repli : profilApi de contenu.json
+  const profil = useDonneesApi(chargerProfil, profilApi)
   const section = useRef<HTMLElement>(null)
 
   useGSAP(
@@ -180,7 +184,7 @@ export default function Method() {
         {/* Terminal + engagements */}
         <div className="flex flex-wrap items-stretch gap-10">
           <div className="min-w-0 flex-[1_1_600px]">
-            <Terminal donnees={methode.terminal} profil={profilApi} />
+            <Terminal donnees={methode.terminal} profil={profil} />
           </div>
           <div data-engagements className="flex min-w-0 flex-[1_1_360px] flex-col justify-center gap-[22px]">
             <h3 className="m-0 font-mono text-[12px] font-normal tracking-[2px] text-contrast-label">

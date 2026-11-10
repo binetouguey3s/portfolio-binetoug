@@ -67,11 +67,15 @@ class ContactView(APIView):
 
         message = serializer.save()
         if settings.CONTACT_NOTIFY_EMAIL:
-            send_mail(
-                subject=f"Portfolio : nouveau message de {message.nom}",
-                message=f"{message.nom} <{message.email}>\n\n{message.message}",
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[settings.CONTACT_NOTIFY_EMAIL],
-                fail_silently=True,
-            )
+            # Le message est déjà enregistré : une notification qui échoue (mot de passe SMTP faux,
+            # serveur injoignable…) ne doit jamais faire échouer l'envoi du formulaire.
+            try:
+                send_mail(
+                    subject=f"Portfolio : nouveau message de {message.nom}",
+                    message=f"{message.nom} <{message.email}>\n\n{message.message}",
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[settings.CONTACT_NOTIFY_EMAIL],
+                )
+            except Exception:
+                journal.exception("Notification email du message %s impossible (voir les réglages EMAIL_*).", message.pk)
         return Response({"ok": True}, status=status.HTTP_201_CREATED)

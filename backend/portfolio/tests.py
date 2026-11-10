@@ -127,5 +127,13 @@ class ContactTests(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertIn("Awa Diop", mail.outbox[0].subject)
 
+    @override_settings(CONTACT_NOTIFY_EMAIL="binetou@exemple.sn")
+    @patch("portfolio.views.send_mail", side_effect=UnicodeEncodeError("ascii", "←", 0, 1, "mot de passe invalide"))
+    def test_email_en_echec_le_message_est_quand_meme_enregistre(self, _):
+        with self.assertLogs("portfolio.views", level="ERROR"):
+            reponse = self.client.post("/api/contact/", MESSAGE_VALIDE, format="json")
+        self.assertEqual(reponse.status_code, 201)
+        self.assertEqual(ContactMessage.objects.count(), 1)
+
     def test_get_non_autorise(self):
         self.assertEqual(self.client.get("/api/contact/").status_code, 405)

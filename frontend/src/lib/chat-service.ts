@@ -1,11 +1,18 @@
 /**
- * Service du chatbot.
- * PROVISOIRE (étape 9) : faux service qui répond après 1 seconde avec un texte
- * de test. À l'étape 15, il appellera POST /api/chat/ sur l'API Django.
+ * Service du chatbot : POST /api/chat/ (Django → GroqCloud).
+ * En cas d'échec (API hors ligne, délai, limite de débit, 503…), l'appelant affiche
+ * chatbot.horsLigne avec les actions de secours (CV).
  */
+import { appelerApi, ErreurApi, estListeDeTextes, estObjet, estTexte } from './api'
 
 /** Longueur maximale d'une question (même limite que l'API Django) */
 export const LONGUEUR_MAX_QUESTION = 500
+
+/**
+ * Délai d'attente du chat : Django attend Groq 20 s, puis peut réessayer
+ * avec le modèle de secours (20 s de plus).
+ */
+const DELAI_CHAT_MS = 45_000
 
 export type EchangeHistorique = { role: 'utilisateur' | 'assistant'; texte: string }
 
@@ -15,16 +22,18 @@ export type ReponseChat = {
   actions: string[]
 }
 
-export async function demanderReponse(
-  question: string,
-  historique: EchangeHistorique[],
-): Promise<ReponseChat> {
-  void question
-  void historique
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+export async function demanderReponse(question: string, historique: EchangeHistorique[]): Promise<ReponseChat> {
+  const donnees = await appelerApi('/api/chat/', {
+    methode: 'POST',
+    corps: { message: question, history: historique },
+    delaiMs: DELAI_CHAT_MS,
+  })
+  if (!estObjet(donnees) || !estTexte(donnees.reponse) || !donnees.reponse.trim()) {
+    throw new ErreurApi('format', 'Réponse du chatbot inattendue.')
+  }
   return {
-    reponse:
-      "Réponse de test : l'interface fonctionne. L'assistante répondra pour de vrai quand l'API Django sera branchée (étape 15).",
-    actions: ['cv-back', 'voir-ande-setal'],
+    reponse: donnees.reponse,
+    // Identifiants seulement ; le front ne garde que ceux de chatbot.actions (voir chat-actions.ts)
+    actions: estListeDeTextes(donnees.actions) ? donnees.actions.slice(0, 2) : [],
   }
 }
