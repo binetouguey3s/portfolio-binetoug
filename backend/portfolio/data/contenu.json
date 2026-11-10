@@ -213,13 +213,14 @@
   },
   "bandeaux": {
     "ruban1": [
-      { "categorie": "DÉVELOPPEMENT", "items": ["Python", "Django", "Django REST Framework", "FastAPI", "Angular", "React", "TypeScript", "JavaScript", "Flutter", "Node.js", "Tailwind CSS", "PostgreSQL", "MySQL", "Supabase"] },
-      { "categorie": "IA", "items": ["LLM", "RAG", "Hugging Face", "OpenAI", "GroqCloud", "n8n"] }
+      { "categorie": "DÉVELOPPEMENT", "items": ["Python", "Django", "Django REST Framework", "FastAPI", "Angular", "React", "TypeScript", "JavaScript", "Flutter", "Node.js", "Tailwind CSS", "PostgreSQL", "MySQL", "Supabase", "RxJS", "Vite", "JWT", "Swagger"] },
+      { "categorie": "IA", "items": ["LLM", "RAG", "LangChain", "ChromaDB", "Hugging Face", "PyTorch", "NLP", "Vision · ResNet · ViT · CLIP", "Whisper", "OpenAI", "OpenRouter", "GroqCloud", "n8n"] }
     ],
     "ruban2": [
       { "categorie": "CONCEPTION", "items": ["UML", "Merise"] },
       { "categorie": "MAQUETTE", "items": ["Figma", "UX Pilot", "Photoshop", "Illustrator"] },
       { "categorie": "GESTION DE PROJET", "items": ["Scrum", "Kanban", "Jira", "Trello", "Notion", "ClickUp"] },
+      { "categorie": "QUALITÉ", "items": ["Tests", "Vitest", "QA"] },
       { "categorie": "DÉPLOIEMENT", "items": ["Docker", "Nginx", "GitHub Actions", "Vercel", "Netlify", "LWS", "Git"] }
     ]
   },

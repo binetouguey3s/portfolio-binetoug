@@ -30,14 +30,12 @@ export default function ToolsMarquee() {
         groupes={ruban1}
         variante="plein"
         sens="gauche"
-        duree={70}
         className="absolute -left-[10%] top-9 w-[120%] -rotate-3 md:top-[52px]"
       />
       <Marquee
         groupes={ruban2}
         variante="verre"
         sens="droite"
-        duree={60}
         className="absolute -left-[10%] top-[140px] w-[120%] rotate-[2.5deg] md:top-[196px]"
       />
     </section>

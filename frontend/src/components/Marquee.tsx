@@ -3,26 +3,33 @@ import Flower from './Flower'
 import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap'
 import type { GroupeBandeau } from '../types/content'
 
+/**
+ * Vitesse de défilement, en pixels par seconde (mesurée sur la version d'origine) :
+ * la durée d'un tour est calculée d'après la longueur réelle du ruban, donc ajouter des outils
+ * dans contenu.json allonge le tour sans accélérer le défilement.
+ */
+const VITESSE = { mobile: 56, desktop: 65 } as const
+const REQUETE_DESKTOP = '(min-width: 768px)'
+
 type MarqueeProps = {
   groupes: GroupeBandeau[]
   /** plein : ruban accent (ruban 1) · verre : ruban en verre dépoli (ruban 2) */
   variante: 'plein' | 'verre'
   /** Sens du défilement */
   sens: 'gauche' | 'droite'
-  /** Durée d'un tour complet, en secondes (plus grand = plus lent) */
-  duree?: number
   className?: string
 }
 
 /**
  * Ruban infini des outils (captures 02-…-03/04 et 04-…-03/04).
- * - Défilement en CSS (contenu dupliqué, translateX de 0 à −50 %).
+ * - Défilement en CSS (contenu dupliqué, translateX de 0 à −50 %) : boucle continue quelle que
+ *   soit la longueur ; durée calculée pour garder la même vitesse (VITESSE).
  * - Ralentit au survol ; accélère avec la vitesse de défilement de la page
  *   (GSAP ajuste la vitesse de lecture de l'animation CSS).
  * - Immobile si prefers-reduced-motion (voir .marquee-piste dans index.css).
  * - Le ruban animé est masqué aux lecteurs d'écran : la section fournit une liste lisible.
  */
-export default function Marquee({ groupes, variante, sens, duree = 60, className = '' }: MarqueeProps) {
+export default function Marquee({ groupes, variante, sens, className = '' }: MarqueeProps) {
   const ruban = useRef<HTMLDivElement>(null)
   const plein = variante === 'plein'
 
@@ -30,7 +37,21 @@ export default function Marquee({ groupes, variante, sens, duree = 60, className
     () => {
       const piste = ruban.current?.querySelector<HTMLElement>('.marquee-piste')
       const animation = piste?.getAnimations()[0]
+      // Pas d'animation : mouvement réduit (ruban immobile, voir index.css)
       if (!piste || !animation) return
+
+      // Durée d'un tour = longueur d'une copie / vitesse ; recalculée si la longueur change
+      // (polices chargées, redimensionnement)
+      const copie = piste.firstElementChild as HTMLElement
+      const ajusterDuree = () => {
+        const vitesse = window.matchMedia(REQUETE_DESKTOP).matches ? VITESSE.desktop : VITESSE.mobile
+        // offsetWidth : longueur réelle (le ruban est incliné, son rectangle à l'écran serait faussé)
+        const largeur = copie.offsetWidth
+        if (largeur > 0) piste.style.animationDuration = `${(largeur / vitesse).toFixed(1)}s`
+      }
+      ajusterDuree()
+      const observateur = new ResizeObserver(ajusterDuree)
+      observateur.observe(copie)
 
       const etat = { survol: 1, elan: 0 }
       const appliquer = () => {
@@ -68,6 +89,7 @@ export default function Marquee({ groupes, variante, sens, duree = 60, className
         ruban.current?.removeEventListener('pointerenter', entrer)
         ruban.current?.removeEventListener('pointerleave', sortir)
         declencheur.kill()
+        observateur.disconnect()
         animation.playbackRate = 1
       }
     },
@@ -118,10 +140,7 @@ export default function Marquee({ groupes, variante, sens, duree = 60, className
         className,
       ].join(' ')}
     >
-      <div
-        className={`marquee-piste flex w-max ${sens === 'droite' ? 'marquee-droite' : ''}`}
-        style={{ animationDuration: `${duree}s` }}
-      >
+      <div className={`marquee-piste flex w-max ${sens === 'droite' ? 'marquee-droite' : ''}`}>
         {contenu(1)}
         {contenu(2)}
       </div>

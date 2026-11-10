@@ -94,13 +94,12 @@ def _complements(c: dict[str, Any], deja: str) -> list[str]:
     faits.append(f"Méthode : {' → '.join(e['titre'] for e in methode['etapes'])}.")
     faits.append(f"Engagements : {' ; '.join(e['titre'] for e in methode['engagements'])}.")
 
-    faits.append("Sur le site : formulaire de contact et boutons de téléchargement des CV.")
 
     outils: list[str] = []
     deja_colle = deja.replace(" ", "")
     for groupe in c["bandeaux"]["ruban1"] + c["bandeaux"]["ruban2"] + c["competences"]["groupes"]:
         for item in groupe["items"]:
-            morceaux = [m.strip() for m in item.split("·")]
+            morceaux = [m.strip() for m in re.split(r"[·&]", item)]
             # « Tailwind CSS » et « TailwindCSS » sont le même outil : on compare aussi sans espaces
             if any(_cle(m).replace(" ", "") not in deja_colle for m in morceaux) and item not in outils:
                 outils.append(item)
