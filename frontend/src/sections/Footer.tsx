@@ -7,7 +7,7 @@ import Halo from '../components/Halo'
 import Logo from '../components/Logo'
 import { useChat } from '../hooks/useChat'
 import { contenu } from '../lib/content'
-import { LANGUE_CV } from '../lib/cv'
+import { useLangueCv } from '../hooks/useLangueCv'
 import { gsap, useGSAP } from '../lib/gsap'
 import { LIEN_EXTERNE } from '../lib/liens'
 
@@ -62,6 +62,7 @@ function adresseReseau(source: string): string {
  * signature géante en dégradé qui monte quand on arrive en bas.
  */
 export default function Footer() {
+  const langue = useLangueCv()
   const { footer, identite } = contenu
   const { ouvrirPanneau } = useChat()
   const pied = useRef<HTMLElement>(null)
@@ -179,7 +180,7 @@ export default function Footer() {
                 <CvLiens cv={cv} />
               </div>
             ))}
-            {LANGUE_CV === 'en' ? (
+            {langue === 'en' ? (
               <p lang="en" className="m-0 font-mono text-[11px] tracking-[1px] text-text-muted">
                 {identite.cvSuggestionEN}
               </p>

@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react'
 import Button from './Button'
 import CvLiens from './CvLiens'
 import { contenu } from '../lib/content'
-import { LANGUE_CV } from '../lib/cv'
+import { useLangueCv } from '../hooks/useLangueCv'
 
 type CvMenuProps = {
   /** Texte du bouton (contenu.json : hero.ctaSecondaire) */
@@ -31,6 +31,7 @@ export default function CvMenu({
   className = '',
 }: CvMenuProps) {
   const [ouvert, setOuvert] = useState(false)
+  const langue = useLangueCv()
   const idListe = useId()
   const conteneur = useRef<HTMLDivElement>(null)
 
@@ -101,7 +102,7 @@ export default function CvMenu({
             </li>
           ))}
         </ul>
-        {LANGUE_CV === 'en' ? (
+        {langue === 'en' ? (
           <p lang="en" className="m-0 px-4 pb-2 pt-1 font-mono text-[11px] tracking-[1px] text-text-muted">
             {contenu.identite.cvSuggestionEN}
           </p>

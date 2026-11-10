@@ -244,5 +244,11 @@
     "mention": "DAKAR, SÉNÉGAL · CONÇU ET DÉVELOPPÉ AVEC REACT & DJANGO",
     "retourHaut": "Retour en haut",
     "signature": { "avant": "Binetou", "italique": "Gueye" }
+  },
+  "page404": {
+    "numero": "404",
+    "titre": "Page introuvable",
+    "texte": "Cette page n'existe pas ou a été déplacée. Revenez à l'accueil pour découvrir le portfolio.",
+    "bouton": "Retour à l'accueil"
   }
 }

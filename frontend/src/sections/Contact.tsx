@@ -80,7 +80,7 @@ export default function Contact() {
       const mm = gsap.matchMedia()
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         gsap.from('[data-monte]', {
-          autoAlpha: 0,
+          opacity: 0,
           y: 40,
           duration: 0.9,
           stagger: 0.12,

@@ -1,0 +1,109 @@
+<!doctype html>
+<!-- Modèle de l'image de partage (Open Graph / Twitter), 1200 × 630, mode sombre.
+     Les {{…}} sont remplis par scripts/generer-image-partage.mjs depuis content/contenu.json. -->
+<html lang="fr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../src/styles/tokens.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource-variable/fraunces/opsz.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource-variable/fraunces/opsz-italic.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/inter/400.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/500.css" />
+    <style>
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, sans-serif;
+      }
+      .halo { position: absolute; border-radius: 50%; filter: blur(70px); }
+      .halo-1 { width: 620px; height: 620px; right: -120px; top: -40px; background: var(--halo-1); opacity: 0.55; }
+      .halo-2 { width: 420px; height: 420px; left: -160px; bottom: -220px; background: var(--halo-2); opacity: 0.5; }
+      .texte {
+        position: absolute;
+        left: 72px;
+        top: 64px;
+        bottom: 64px;
+        width: 640px;
+        display: flex;
+        flex-direction: column;
+      }
+      .logo { height: 58px; width: auto; align-self: flex-start; }
+      .surtitre {
+        margin-top: 46px;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 500;
+        font-size: 17px;
+        letter-spacing: 3px;
+        color: var(--accent);
+      }
+      h1 {
+        margin-top: 18px;
+        font-family: 'Fraunces Variable', serif;
+        font-weight: 400;
+        font-size: 60px;
+        line-height: 1.04;
+        letter-spacing: -1.5px;
+      }
+      h1 em { color: var(--accent); font-weight: 300; }
+      .disponible {
+        margin-top: auto;
+        display: inline-flex;
+        align-self: flex-start;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 20px;
+        border: 1px solid var(--glass-border);
+        border-radius: 999px;
+        background: var(--glass-bg);
+        font-size: 19px;
+        color: var(--text);
+      }
+      .disponible::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .portrait-zone { position: absolute; right: 70px; top: 85px; width: 460px; height: 460px; }
+      .portrait-zone svg { position: absolute; inset: 0; }
+      .portrait {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 320px;
+        height: 320px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 2px solid var(--glow);
+        object-fit: cover;
+        object-position: 50% 20%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="halo halo-1"></div>
+    <div class="halo halo-2"></div>
+
+    <div class="texte">
+      <img class="logo" src="../../assets/logo/logo-sombre.svg" alt="" />
+      <p class="surtitre">{{SURTITRE}}</p>
+      <h1>{{TITRE_AVANT}} <em>{{TITRE_ITALIQUE}}</em> {{TITRE_APRES}}</h1>
+      <p class="disponible">{{DISPONIBILITE}}</p>
+    </div>
+
+    <div class="portrait-zone">
+      <svg viewBox="0 0 460 460" fill="none">
+        <circle cx="230" cy="230" r="225" stroke="var(--border)" stroke-width="1" />
+        <circle cx="230" cy="230" r="196" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="2 9" stroke-linecap="round" opacity="0.8" />
+        <path d="M230 5 A225 225 0 0 1 455 230" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" />
+      </svg>
+      <img class="portrait" src="../../assets/photos/portrait-accueil.jpg" alt="" />
+    </div>
+  </body>
+</html>

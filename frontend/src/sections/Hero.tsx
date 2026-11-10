@@ -3,7 +3,8 @@ import { ArrowRight } from 'lucide-react'
 import Button from '../components/Button'
 import Chip from '../components/Chip'
 import CvMenu from '../components/CvMenu'
-import { fichierCv, LANGUE_CV, libelleTelechargementCv } from '../lib/cv'
+import { useLangueCv } from '../hooks/useLangueCv'
+import { fichierCv, libelleTelechargementCv } from '../lib/cv'
 import Halo from '../components/Halo'
 import Rings from '../components/Rings'
 import { useEstMobile } from '../hooks/useMediaQuery'
@@ -11,6 +12,8 @@ import { useReducedMotion } from '../hooks/useReducedMotion'
 import { contenu } from '../lib/content'
 import { gsap, SplitText, useGSAP } from '../lib/gsap'
 import { surFinIntro } from '../lib/intro'
+import Image from '../components/Image'
+import { PORTRAIT_ACCUEIL } from '../lib/images'
 
 /**
  * Positions des étiquettes autour du portrait (valeurs de la maquette).
@@ -38,6 +41,7 @@ const POSITIONS_MOBILE = [
 export default function Hero() {
   const { hero } = contenu
   const estMobile = useEstMobile()
+  const langueCv = useLangueCv()
   const mouvementReduit = useReducedMotion()
   const section = useRef<HTMLElement>(null)
 
@@ -49,25 +53,28 @@ export default function Hero() {
     () => {
       if (mouvementReduit) return
 
-      // 1. Révélation après le préchargement
+      // 1. Révélation après le préchargement.
+      // Les textes sont déjà affichés sous l'écran de préchargement (qui les cache) : ils glissent
+      // en place pendant qu'il s'efface. Le contenu principal est ainsi prêt dès le premier rendu.
       const elementsTexte = gsap.utils.toArray<HTMLElement>('[data-apparait]')
-      gsap.set(elementsTexte, { autoAlpha: 0, y: 24 })
+      gsap.set(elementsTexte, { y: 24 })
       const portrait = section.current?.querySelector<HTMLElement>('[data-portrait]') ?? null
       const titreEl = section.current?.querySelector<HTMLElement>('[data-titre]') ?? null
-      gsap.set([portrait, titreEl], { autoAlpha: 0 })
+      // Le portrait aussi est affiché sous le préchargement : seul son léger zoom reste à la révélation
+      gsap.set(titreEl, { opacity: 0 })
       gsap.set(portrait, { scale: 0.92 })
 
       let decoupe: SplitText | null = null
       const arreter = surFinIntro(() => {
         if (!titreEl || !portrait) return
         decoupe = SplitText.create(titreEl, { type: 'words', mask: 'words' })
-        gsap.set(titreEl, { autoAlpha: 1 })
+        gsap.set(titreEl, { opacity: 1 })
 
         gsap
           .timeline({ defaults: { ease: 'power4.out' } })
           .from(decoupe.words, { yPercent: 110, duration: 1, stagger: 0.07 })
-          .to(portrait, { autoAlpha: 1, scale: 1, duration: 1.2, ease: 'expo.out' }, 0.1)
-          .to(elementsTexte, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.08 }, 0.25)
+          .to(portrait, { scale: 1, duration: 1.2, ease: 'expo.out' }, 0)
+          .to(elementsTexte, { y: 0, duration: 0.8, stagger: 0.08 }, 0)
           // Le découpage est retiré à la fin : le titre redevient un texte simple
           .call(() => {
             decoupe?.revert()
@@ -195,11 +202,11 @@ export default function Hero() {
             {contenu.identite.cv.map((cv) => (
               <li key={cv.fichier}>
                 <a
-                  href={fichierCv(cv, LANGUE_CV)}
+                  href={fichierCv(cv, langueCv)}
                   download
                   target="_blank"
                   rel="noopener"
-                  aria-label={libelleTelechargementCv(cv, LANGUE_CV)}
+                  aria-label={libelleTelechargementCv(cv, langueCv)}
                   className="block rounded-pill no-underline"
                 >
                   <Chip variant="mono" className="transition-colors duration-200 hover:border-accent">
@@ -233,8 +240,9 @@ export default function Hero() {
               <Rings variant={estMobile ? 'portraitMobile' : 'portrait'} />
             </div>
 
-            <img
-              src="/images/portrait-accueil.jpg"
+            <Image
+              src={PORTRAIT_ACCUEIL.src}
+              sizes={PORTRAIT_ACCUEIL.sizes}
               alt="Portrait de Binetou Gueye"
               width={900}
               height={900}

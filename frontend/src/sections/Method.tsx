@@ -56,7 +56,7 @@ export default function Method() {
           if (!anime) return
 
           gsap.from('[data-monte]', {
-            autoAlpha: 0,
+            opacity: 0,
             y: 40,
             duration: 0.9,
             stagger: 0.1,
@@ -77,12 +77,12 @@ export default function Method() {
             0,
           )
           etapes.forEach((etape, i) => {
-            tl.from(etape, { autoAlpha: 0, y: 30, duration: 0.5, ease: 'power2.out' }, Math.max(0, i - 0.15))
+            tl.from(etape, { opacity: 0, y: 30, duration: 0.5, ease: 'power2.out' }, Math.max(0, i - 0.15))
           })
 
           // Engagements i à iv : apparition décalée
           gsap.from('[data-engagement]', {
-            autoAlpha: 0,
+            opacity: 0,
             x: 24,
             duration: 0.7,
             stagger: 0.12,

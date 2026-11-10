@@ -269,3 +269,69 @@ body {
     background-size: 240px 240px;
   }
 }
+
+/* =====================================================================
+   Préchargement (index.html) : visible dès la première image, sans JavaScript.
+   Mêmes étapes que l'animation d'origine : anneau (0,8 s), B, puis fleur.
+   ===================================================================== */
+.prechargement {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+.prechargement svg {
+  width: 6rem;
+  height: 6rem;
+}
+@media (min-width: 768px) {
+  .prechargement svg {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+.prechargement-traits {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 11;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.prechargement-anneau,
+.prechargement-b {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: prechargement-trace 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.prechargement-b {
+  animation-duration: 0.55s;
+  animation-delay: 0.45s;
+}
+.prechargement-fleur {
+  fill: var(--text);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0) rotate(-90deg);
+  animation: prechargement-eclot 0.5s cubic-bezier(0.34, 1.8, 0.64, 1) 0.85s forwards;
+}
+.prechargement-coeur {
+  fill: var(--bg);
+}
+@keyframes prechargement-trace {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes prechargement-eclot {
+  to {
+    transform: scale(1) rotate(0deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prechargement {
+    display: none !important;
+  }
+}

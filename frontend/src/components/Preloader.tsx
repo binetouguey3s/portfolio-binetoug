@@ -1,80 +1,46 @@
-import { useRef, useState } from 'react'
-import { gsap, useGSAP } from '../lib/gsap'
+import { useEffect } from 'react'
+import { gsap } from '../lib/gsap'
 import { signalerFinIntro } from '../lib/intro'
-import { useReducedMotion } from '../hooks/useReducedMotion'
+
+/** Petite pause entre l'éclosion de la fleur et le fondu (comme l'animation d'origine) */
+const PAUSE_MS = 150
 
 /**
- * Préchargement court (~1,6 s) : l'anneau du G se dessine (stroke-dashoffset),
- * puis le B, puis la fleur éclot ; l'écran s'efface et l'accueil se révèle.
- * Le dessin reprend les tracés exacts du logo (assets/logo), en variables CSS.
- * Absent si prefers-reduced-motion. Décoratif (aria-hidden).
+ * Fin du préchargement.
+ * Le dessin (anneau du G, B, fleur) est dans index.html et animé en CSS : il s'affiche
+ * dès la première image, pendant que le JavaScript se charge. Ce composant attend la fin
+ * de cette animation (tout de suite si elle est déjà finie), puis efface l'écran
+ * et signale à l'accueil qu'il peut se révéler. Si mouvement réduit : rien à attendre.
  */
 export default function Preloader() {
-  const mouvementReduit = useReducedMotion()
-  const [visible, setVisible] = useState(!mouvementReduit)
-  const racine = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const ecran = document.getElementById('prechargement')
+    const mouvementReduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!ecran || mouvementReduit) {
+      ecran?.remove()
+      signalerFinIntro()
+      return
+    }
 
-  useGSAP(
-    () => {
-      if (mouvementReduit) {
-        signalerFinIntro()
-        setVisible(false)
-        return
-      }
-      const traits = gsap.utils.toArray<SVGPathElement>('[data-trait]')
-      traits.forEach((t) => {
-        const longueur = t.getTotalLength()
-        gsap.set(t, { strokeDasharray: longueur, strokeDashoffset: longueur })
+    let annule = false
+    let fondu: gsap.core.Timeline | null = null
+    const animations = ecran.getAnimations({ subtree: true })
+    Promise.all(animations.map((a) => a.finished.catch(() => undefined)))
+      .then(() => new Promise((resolve) => window.setTimeout(resolve, PAUSE_MS)))
+      .then(() => {
+        if (annule) return
+        fondu = gsap
+          .timeline({ onComplete: () => ecran.remove() })
+          .to(ecran, { autoAlpha: 0, duration: 0.45, ease: 'power2.out' })
+          .call(signalerFinIntro, [], 0.1)
       })
 
-      const tl = gsap.timeline({
-        defaults: { ease: 'power3.inOut' },
-        onComplete: () => setVisible(false),
-      })
-      tl.to('[data-trait="anneau"]', { strokeDashoffset: 0, duration: 0.8 })
-        .to('[data-trait="b"]', { strokeDashoffset: 0, duration: 0.55 }, '-=0.35')
-        .from(
-          '[data-fleur]',
-          { scale: 0, rotation: -90, transformOrigin: '50% 50%', duration: 0.5, ease: 'back.out(2.2)' },
-          '-=0.15',
-        )
-        .to(racine.current, { autoAlpha: 0, duration: 0.45, ease: 'power2.out' }, '+=0.15')
-        .call(signalerFinIntro, [], '<0.1')
-    },
-    { scope: racine, dependencies: [mouvementReduit] },
-  )
+    return () => {
+      // StrictMode (développement) monte deux fois : on n'efface qu'une fois
+      annule = true
+      fondu?.kill()
+    }
+  }, [])
 
-  if (!visible) return null
-
-  return (
-    <div
-      ref={racine}
-      aria-hidden="true"
-      className="fixed inset-0 z-[70] flex items-center justify-center bg-bg"
-    >
-      <svg viewBox="0 0 200 200" className="size-24 md:size-28">
-        <g fill="none" className="stroke-accent" strokeWidth="11" strokeLinecap="round" strokeLinejoin="round">
-          <path data-trait="anneau" d="M156.7 55.7 A72 72 0 1 0 170.4 115.0 H128" />
-          <path
-            data-trait="b"
-            d="M78 58 V142 M78 58 H101 a19.5 19.5 0 0 1 0 39 H78 M78 97 H106 a22.5 22.5 0 0 1 0 45 H78"
-          />
-        </g>
-        <g data-fleur>
-          {[0, 90, 180, 270].map((angle) => (
-            <ellipse
-              key={angle}
-              cx="156.7"
-              cy="48.7"
-              rx="4.2"
-              ry="7.5"
-              transform={`rotate(${angle} 156.7 55.7)`}
-              className="fill-text"
-            />
-          ))}
-          <circle cx="156.7" cy="55.7" r="3.6" className="fill-bg" />
-        </g>
-      </svg>
-    </div>
-  )
+  return null
 }

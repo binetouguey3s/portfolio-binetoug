@@ -1,5 +1,6 @@
 import { Download } from 'lucide-react'
-import { fichierCv, libelleTelechargementCv, ORDRE_LANGUES_CV } from '../lib/cv'
+import { useLangueCv } from '../hooks/useLangueCv'
+import { fichierCv, libelleTelechargementCv, ordreLanguesCv } from '../lib/cv'
 import type { Cv } from '../types/content'
 
 type CvLiensProps = {
@@ -14,9 +15,10 @@ type CvLiensProps = {
  * Téléchargement direct, ouverture dans un nouvel onglet si le navigateur affiche le PDF.
  */
 export default function CvLiens({ cv, onChoisir, className = '' }: CvLiensProps) {
+  const langue = useLangueCv()
   return (
     <span className={`flex shrink-0 gap-1.5 ${className}`}>
-      {ORDRE_LANGUES_CV.map((langue) => (
+      {ordreLanguesCv(langue).map((langue) => (
         <a
           key={langue}
           data-cv
@@ -24,11 +26,12 @@ export default function CvLiens({ cv, onChoisir, className = '' }: CvLiensProps)
           download
           target="_blank"
           rel="noopener"
-          aria-label={libelleTelechargementCv(cv, langue)}
           onClick={onChoisir}
           className="glass glass-sans-ombre inline-flex min-h-8 items-center gap-1 rounded-pill px-2.5 font-mono text-[12px] tracking-[1px] text-accent no-underline transition-[filter] duration-200 hover:brightness-110"
         >
           {langue.toUpperCase()}
+          {/* Nom lu : « FR, Télécharger le CV Général en français » (il commence par le texte visible) */}
+          <span className="sr-only">, {libelleTelechargementCv(cv, langue)}</span>
           <Download aria-hidden="true" size={12} strokeWidth={2} />
         </a>
       ))}

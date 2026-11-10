@@ -38,12 +38,12 @@ export default function TreeOfSkills({ actif = null, className = '' }: TreeOfSki
     () => {
       if (mouvementReduit || !svg.current) return
 
+      // Longueur normalisée à 1 (pathLength) : le tracé progressif n'a besoin d'aucune mesure,
+      // donc pas de recalcul de mise en page trait par trait au chargement
       const prepareTrace = (selecteur: string) => {
         const traits = gsap.utils.toArray<SVGPathElement>(selecteur)
-        traits.forEach((t) => {
-          const longueur = t.getTotalLength()
-          gsap.set(t, { strokeDasharray: longueur, strokeDashoffset: longueur })
-        })
+        traits.forEach((t) => t.setAttribute('pathLength', '1'))
+        gsap.set(traits, { strokeDasharray: 1, strokeDashoffset: 1 })
         return traits
       }
       const racines = prepareTrace('[data-groupe="racines"] path')

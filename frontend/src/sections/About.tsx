@@ -3,6 +3,7 @@ import SectionHeading from '../components/SectionHeading'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { contenu } from '../lib/content'
 import { gsap, useGSAP } from '../lib/gsap'
+import Image from '../components/Image'
 
 /**
  * 01 · À propos (captures 01-…-02 et 03-…-02).
@@ -33,10 +34,10 @@ export default function About() {
           { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3, ease: 'expo.out' },
         )
         .from('[data-photo] img', { scale: 1.15, duration: 1.6, ease: 'expo.out' }, 0)
-        .from('[data-citation]', { autoAlpha: 0, y: 24, duration: 0.8, ease: 'power3.out' }, 0.7)
+        .from('[data-citation]', { opacity: 0, y: 24, duration: 0.8, ease: 'power3.out' }, 0.7)
         .from(
           '[data-monte]',
-          { autoAlpha: 0, y: 40, duration: 0.9, stagger: 0.1, ease: 'power3.out' },
+          { opacity: 0, y: 40, duration: 0.9, stagger: 0.1, ease: 'power3.out' },
           0.15,
         )
     },
@@ -54,8 +55,9 @@ export default function About() {
         {/* Photo en arche + citation qui déborde */}
         <div className="relative mx-auto w-full min-w-0 max-w-[460px] lg:mx-0 lg:max-w-none lg:flex-[1_1_380px]">
           <div data-photo className="overflow-hidden rounded-[200px_200px_28px_28px]">
-            <img
+            <Image
               src="/images/portrait-apropos.jpg"
+              sizes="(min-width: 1024px) 560px, (min-width: 768px) 460px, calc(100vw - 44px)"
               alt="Binetou Gueye en pied, tenue à motifs floraux"
               width={880}
               height={1100}

@@ -70,7 +70,7 @@ export default function Skills() {
     () => {
       if (mouvementReduit) return
       gsap.from('[data-monte]', {
-        autoAlpha: 0,
+        opacity: 0,
         y: 40,
         duration: 0.9,
         stagger: 0.1,
@@ -78,7 +78,7 @@ export default function Skills() {
         scrollTrigger: { trigger: section.current, start: 'top 75%', once: true },
       })
       gsap.from('[data-carte]', {
-        autoAlpha: 0,
+        opacity: 0,
         y: 30,
         duration: 0.8,
         stagger: 0.12,

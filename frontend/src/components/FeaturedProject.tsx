@@ -5,6 +5,7 @@ import Rings from './Rings'
 import VideoModal from './VideoModal'
 import { LIEN_EXTERNE, lienValide } from '../lib/liens'
 import type { ProjetVedette } from '../types/content'
+import Image from './Image'
 
 /**
  * Carte vedette Sen Suivi (captures 01-…-04 et 03-…-04).
@@ -54,16 +55,18 @@ export default function FeaturedProject({ vedette }: { vedette: ProjetVedette })
       <div className="relative flex min-h-[340px] min-w-0 items-center justify-center bg-surface md:min-h-[420px] lg:flex-[1_1_460px]">
         <Rings variant="angle" />
         <div className="relative flex flex-col items-center gap-[22px] p-10 text-center">
-          <img
+          <Image
             src={vedette.logo.sombre}
+            sizes="150px"
             alt="Logo Sen Suivi"
             width={474}
             height={633}
             loading="lazy"
             className="seulement-sombre h-auto w-[150px]"
           />
-          <img
+          <Image
             src={vedette.logo.clair}
+            sizes="150px"
             alt="Logo Sen Suivi"
             width={474}
             height={633}

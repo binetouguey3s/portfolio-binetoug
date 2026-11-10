@@ -11,6 +11,12 @@ const sources = {
   icone: { sombre: '/logo/icone-sombre.svg', clair: '/logo/icone-claire.svg' },
 }
 
+/** Proportions des fichiers SVG (viewBox) : width et height réservent la place avant le chargement */
+const dimensions = {
+  logo: { width: 760, height: 220 },
+  icone: { width: 200, height: 200 },
+}
+
 /**
  * Logo dans la bonne version selon le mode.
  * Les deux images sont dans la page ; le CSS (variables --affiche-*) montre
@@ -19,10 +25,11 @@ const sources = {
  */
 export default function Logo({ variant = 'logo', alt = 'Binetou Gueye', className = '' }: LogoProps) {
   const src = sources[variant]
+  const taille = dimensions[variant]
   return (
     <>
-      <img src={src.sombre} alt={alt} className={`seulement-sombre ${className}`} decoding="async" />
-      <img src={src.clair} alt={alt} className={`seulement-clair ${className}`} decoding="async" />
+      <img src={src.sombre} alt={alt} {...taille} className={`seulement-sombre ${className}`} decoding="async" />
+      <img src={src.clair} alt={alt} {...taille} className={`seulement-clair ${className}`} decoding="async" />
     </>
   )
 }

@@ -20,8 +20,10 @@ type VideoModalProps = {
 
 /**
  * Fenêtre modale avec un lecteur vidéo HTML5 accessible.
+ * - Le lecteur n'existe dans la page qu'une fois la fenêtre ouverte : ni la vidéo
+ *   ni son affiche ne sont téléchargées avant le clic.
  * - Le format est choisi à l'ouverture : 9:16 sur téléphone vertical, 16:9 ailleurs.
- *   Un seul fichier est téléchargé, et seulement à l'ouverture (preload="none").
+ *   Un seul fichier est téléchargé.
  * - Repose sur <dialog> : focus piégé et Échap pour fermer, gérés par le navigateur.
  * - La vidéo est mise en pause à la fermeture.
  */
@@ -76,20 +78,22 @@ export default function VideoModal({ ouverte, surFermeture, titre, paysage, port
         >
           <X aria-hidden="true" size={20} strokeWidth={1.8} />
         </button>
-        <video
-          key={format.video}
-          ref={lecteur}
-          src={format.video}
-          poster={format.affiche}
-          controls
-          playsInline
-          preload="none"
-          width={vertical ? 720 : 1280}
-          height={vertical ? 1280 : 720}
-          className={`block w-full rounded-card border border-border bg-bg shadow-glass ${
-            vertical ? 'aspect-[9/16]' : 'aspect-video'
-          }`}
-        />
+        {ouverte ? (
+          <video
+            key={format.video}
+            ref={lecteur}
+            src={format.video}
+            poster={format.affiche}
+            controls
+            playsInline
+            preload="none"
+            width={vertical ? 720 : 1280}
+            height={vertical ? 1280 : 720}
+            className={`block w-full rounded-card border border-border bg-bg shadow-glass ${
+              vertical ? 'aspect-[9/16]' : 'aspect-video'
+            }`}
+          />
+        ) : null}
       </div>
     </dialog>
   )

@@ -309,6 +309,14 @@ export interface Footer {
   signature: TitreItalique
 }
 
+/** Page 404 (404.html), dans le style du site */
+export interface Page404 {
+  numero: string
+  titre: string
+  texte: string
+  bouton: string
+}
+
 export interface Contenu {
   _note: string
   _affichageMobile: string
@@ -328,4 +336,5 @@ export interface Contenu {
   contact: Contact
   bandeaux: Bandeaux
   footer: Footer
+  page404: Page404
 }

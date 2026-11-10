@@ -43,7 +43,7 @@ export default function Stats() {
         } else {
           // Texte (« Certifiée ») : fondu
           gsap.from(el, {
-            autoAlpha: 0,
+            opacity: 0,
             y: 12,
             duration: 1,
             ease: 'power2.out',

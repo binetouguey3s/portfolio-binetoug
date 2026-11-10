@@ -7,6 +7,11 @@
     <!-- Titre et description injectés depuis content/contenu.json (meta) -->
     <title>%TITRE%</title>
     <meta name="description" content="%DESCRIPTION%" />
+    <!-- Partage (Open Graph, Twitter), adresse canonique et données structurées Person :
+         générés au build depuis content/contenu.json (voir vite.config.ts) -->
+    <!--%SEO%-->
+    <!-- Portrait de l'accueil (image principale) : téléchargé en même temps que le JavaScript -->
+    <!--%PRECHARGEMENT%-->
     <!-- Anti-flash : pose data-theme avant le premier rendu
          (choix mémorisé, sinon préférence du système). Voir src/lib/theme.ts -->
     <script>
@@ -23,6 +28,25 @@
     </script>
   </head>
   <body>
+    <!-- Préchargement (~1,5 s) affiché dès la première image, avant le JavaScript :
+         l'anneau du G se dessine, puis le B, puis la fleur éclot (styles : .prechargement dans index.css).
+         src/components/Preloader.tsx le fait disparaître une fois l'animation finie.
+         Caché par défaut tant que la feuille de style n'est pas là ; absent si mouvement réduit. -->
+    <div id="prechargement" class="prechargement" aria-hidden="true" style="display: none">
+      <svg viewBox="0 0 200 200">
+        <g class="prechargement-traits">
+          <path class="prechargement-anneau" pathLength="1" d="M156.7 55.7 A72 72 0 1 0 170.4 115.0 H128" />
+          <path class="prechargement-b" pathLength="1" d="M78 58 V142 M78 58 H101 a19.5 19.5 0 0 1 0 39 H78 M78 97 H106 a22.5 22.5 0 0 1 0 45 H78" />
+        </g>
+        <g class="prechargement-fleur">
+          <ellipse cx="156.7" cy="48.7" rx="4.2" ry="7.5" transform="rotate(0 156.7 55.7)" />
+          <ellipse cx="156.7" cy="48.7" rx="4.2" ry="7.5" transform="rotate(90 156.7 55.7)" />
+          <ellipse cx="156.7" cy="48.7" rx="4.2" ry="7.5" transform="rotate(180 156.7 55.7)" />
+          <ellipse cx="156.7" cy="48.7" rx="4.2" ry="7.5" transform="rotate(270 156.7 55.7)" />
+          <circle class="prechargement-coeur" cx="156.7" cy="55.7" r="3.6" />
+        </g>
+      </svg>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

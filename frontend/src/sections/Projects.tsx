@@ -38,7 +38,7 @@ export default function Projects() {
       // Apparition douce de l'en-tête et de la carte vedette
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         gsap.from('[data-monte]', {
-          autoAlpha: 0,
+          opacity: 0,
           y: 40,
           duration: 0.9,
           stagger: 0.12,

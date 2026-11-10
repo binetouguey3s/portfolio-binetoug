@@ -99,7 +99,7 @@ export default function Terminal({ donnees, profil }: TerminalProps) {
 
       const etat = { n: 0 }
       frappe.textContent = ''
-      gsap.set(lignesEl, { autoAlpha: 0 })
+      gsap.set(lignesEl, { opacity: 0 })
       gsap
         .timeline({ scrollTrigger: { trigger: fenetre.current, start: 'top 75%', once: true } })
         .to(etat, {
@@ -110,7 +110,7 @@ export default function Terminal({ donnees, profil }: TerminalProps) {
             frappe.textContent = commande.slice(0, Math.round(etat.n))
           },
         })
-        .to(lignesEl, { autoAlpha: 1, duration: 0.01, stagger: 0.09 }, '+=0.35')
+        .to(lignesEl, { opacity: 1, duration: 0.01, stagger: 0.09 }, '+=0.35')
     },
     { scope: fenetre, dependencies: [mouvementReduit, commande] },
   )
