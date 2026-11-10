@@ -11,7 +11,7 @@ Captures de référence : `design/maquette-captures/`. Textes : `content/contenu
 | — | Menu flottant | verre | 01-…-01 |
 | — | Accueil (`#accueil`) | `--bg` | 01-…-01 |
 | — | Chiffres | panneau en verre | 01-…-01/02 |
-| 01 | À propos (`#apropos`) | `--contrast-bg` | 01-…-02 |
+| 01 | À propos (`#apropos`) | `--contrast-bg` (variation de ton, pas d'inversion) | 01-…-02 |
 | 02 | Compétences (`#arbre`) | `--bg` | 01-…-02/03 |
 | 03 | Projets (`#projets`) | `--bg-2` | 01-…-03/04/05 |
 | 04 | Ma méthode (`#methode`) | `--contrast-bg` | 02-…-01/02 |

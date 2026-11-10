@@ -1,21 +1,56 @@
-import { contenu } from './lib/content'
+import Grain from './components/Grain'
+import { useLenis } from './hooks/useLenis'
+import Navbar, { ID_CONTENU } from './sections/Navbar'
 
 /**
- * Page temporaire de l'étape 1 : vérifie le fond ébène, les 3 polices
- * et la lecture de contenu.json. Remplacée par le squelette à l'étape 3.
+ * Squelette de la page (une seule page, ancres), dans l'ordre du cahier des charges.
+ * Les sections sont encore vides : chacune sera remplacée par son composant
+ * (src/sections/) aux étapes 4 à 11. La hauteur minimale (min-h-[80vh])
+ * est temporaire, pour pouvoir tester le défilement et le menu.
  */
 function App() {
-  const { hero } = contenu
+  useLenis()
 
   return (
-    <main className="mx-auto flex min-h-dvh max-w-[1280px] flex-col justify-center gap-6 px-[22px] md:px-16">
-      <p className="font-mono text-[13px] tracking-[3px] text-accent">{hero.surtitre}</p>
-      <h1 className="font-display text-[clamp(2.75rem,6vw,5.5rem)] leading-none tracking-[-2px] text-text">
-        {hero.titre.avant} <em className="font-light text-accent">{hero.titre.italique}</em>{' '}
-        {hero.titre.apres}
-      </h1>
-      <p className="max-w-[560px] text-[19px] leading-[1.65] text-text-muted">{hero.texte}</p>
-    </main>
+    <>
+      <Grain />
+      <Navbar />
+
+      {/* Tout sauf le menu : rendu inerte quand le menu mobile est ouvert */}
+      <div id={ID_CONTENU}>
+        <main>
+          {/* Accueil (étape 4) — le haut laisse la place au menu flottant */}
+          <section id="accueil" className="min-h-dvh bg-bg pt-28 xl:pt-[132px]" />
+
+          {/* Bande de chiffres, panneau en verre (étape 5) */}
+          <section aria-hidden="true" className="bg-bg" />
+
+          {/* 01 · À propos (étape 5) */}
+          <section id="apropos" className="min-h-[80vh] bg-contrast-bg text-contrast-text" />
+
+          {/* 02 · Compétences, l'arbre (étape 6) */}
+          <section id="arbre" className="min-h-[80vh] bg-bg" />
+
+          {/* 03 · Projets (étape 7) */}
+          <section id="projets" className="min-h-[80vh] bg-bg-2" />
+
+          {/* 04 · Ma méthode (étape 8) */}
+          <section id="methode" className="min-h-[80vh] bg-contrast-bg text-contrast-text" />
+
+          {/* 05 · Binetou IA (étape 9) */}
+          <section id="ia" className="min-h-[80vh] bg-bg" />
+
+          {/* 06 · Contact (étape 10) */}
+          <section id="contact" className="min-h-[80vh] bg-contact-bg" />
+
+          {/* Bandeaux d'outils : moitié --contact-bg, moitié --bg (étape 11) */}
+          <section aria-hidden="true" className="h-[330px] bg-[linear-gradient(180deg,var(--contact-bg)_48%,var(--bg)_48%)]" />
+        </main>
+
+        {/* Footer (étape 11) */}
+        <footer className="min-h-[50vh] bg-bg" />
+      </div>
+    </>
   )
 }
 

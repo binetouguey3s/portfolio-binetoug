@@ -28,13 +28,14 @@
   --text:            var(--c-lin);
   --text-muted:      rgba(222, 205, 187, 0.82);
 
-  /* Sections contrastées (À propos, Ma méthode) */
-  --contrast-bg:        var(--c-lin);
-  --contrast-card:      #EBDFD2;
-  --contrast-text:      var(--c-ebene);
-  --contrast-text-soft: var(--c-cacao);
-  --contrast-label:     var(--c-acajou);
-  --contrast-border:    var(--c-cuivre);
+  /* Sections À propos et Ma méthode : variation de ton, PAS d'inversion */
+  --contrast-bg:          #33180F; /* brun chaud, un ton au-dessus de l'ébène */
+  --contrast-card:        #3D1D13;
+  --contrast-card-border: var(--c-acajou);
+  --contrast-text:        var(--c-lin);
+  --contrast-text-soft:   #CDB9A5;
+  --contrast-label:       var(--c-caramel);
+  --contrast-border:      var(--c-cacao); /* filets entre les lignes */
 
   /* Section Contact */
   --contact-bg: var(--c-cacao);
@@ -65,12 +66,13 @@
   --text:            #220F0B;
   --text-muted:      rgba(34, 15, 11, 0.78);
 
-  --contrast-bg:        #220F0B;
-  --contrast-card:      #2C140E;
-  --contrast-text:      #FBF6F0;
-  --contrast-text-soft: #E8DACA;
-  --contrast-label:     #C9A27F;
-  --contrast-border:    #733F29;
+  --contrast-bg:          #F1E6D8; /* sable doux */
+  --contrast-card:        #FBF6F0; /* papier */
+  --contrast-card-border: #C9A27F;
+  --contrast-text:        #220F0B;
+  --contrast-text-soft:   #4D2519;
+  --contrast-label:       #733F29;
+  --contrast-border:      #E8DACA;
 
   --contact-bg: #E8DACA;
 

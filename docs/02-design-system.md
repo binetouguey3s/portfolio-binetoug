@@ -14,7 +14,7 @@ Toutes les valeurs sont dans `design/tokens.css`. Planche de référence : `desi
 | Accent (boutons, liens, italiques) | `--accent` | Caramel `#C5946B` | Acajou `#733F29` |
 | Texte sur accent | `--on-accent` | Ébène | Papier |
 | Texte | `--text` | Lin `#DECDBB` | Ébène |
-| Sections À propos et Méthode | `--contrast-*` | fond Lin, texte Ébène | fond Ébène, texte Papier |
+| Sections À propos et Méthode | `--contrast-*` | brun chaud `#33180F`, cartes `#3D1D13`, texte Lin | sable `#F1E6D8`, cartes Papier, texte Ébène |
 | Fond Contact | `--contact-bg` | Cacao | Sable |
 
 Règles :

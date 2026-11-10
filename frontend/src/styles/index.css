@@ -19,6 +19,9 @@
 @import "@fontsource/jetbrains-mono/400.css";
 @import "@fontsource/jetbrains-mono/500.css";
 
+/* Styles recommandés par Lenis (défilement fluide) */
+@import "lenis/dist/lenis.css";
+
 @import "./tokens.css";
 
 /* Le thème passe par data-theme, pas par la variante dark: de Tailwind */
@@ -46,6 +49,7 @@
 
   --color-contrast-bg: var(--contrast-bg);
   --color-contrast-card: var(--contrast-card);
+  --color-contrast-card-border: var(--contrast-card-border);
   --color-contrast-text: var(--contrast-text);
   --color-contrast-text-soft: var(--contrast-text-soft);
   --color-contrast-label: var(--contrast-label);
