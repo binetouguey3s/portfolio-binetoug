@@ -20,7 +20,7 @@
 - Langues : français (courant), wolof (langue maternelle), anglais (intermédiaire, B1).
 
 ## Profil
-Développeuse certifiée Simplon Sénégal (Développeur Web, Mobile et IA), avec une double compétence en développement logiciel et en gestion de projet technique. Elle maîtrise le cycle complet d'une application web et mobile : maquette Figma, front-end, back-end, intégration de l'IA, déploiement en production. Formation scientifique (mathématiques, physique, informatique) et BTS en informatique industrielle et réseaux.
+Développeuse certifiée Simplon Sénégal (Développeur Web, Mobile et IA), avec une double compétence en développement logiciel et en gestion de projet technique. Elle maîtrise le cycle complet d'une application web et mobile : maquette Figma, front-end, back-end, intégration de l'IA, déploiement en production. Formation scientifique (mathématiques, physique, informatique) et en informatique industrielle et réseaux.
 
 ## Compétences
 - Back-end : Python, Django 5 (MVT, ORM, vues basées sur des classes, signaux, administration), Django REST Framework, FastAPI, Node.js ; conception d'API REST sécurisées et documentées (Swagger), authentification (JWT), architecture en micro-services.
