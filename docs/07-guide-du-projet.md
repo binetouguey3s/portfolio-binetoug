@@ -214,8 +214,17 @@ apparaît, et l'action du chatbot `voir-sen-suivi` pointe vers l'application au 
 (`construire_base_chatbot` ; ajouter l'outil dans `content/base-connaissances-chatbot.md` s'il doit le connaître).
 
 ### Changer un CV
-Remplacer le PDF **avec le même nom** dans `assets/cv/` **et** `frontend/public/cv/`. Nouveau nom → mettre à jour
-`identite.cv` dans `contenu.json`.
+1. Mettre le Word et le PDF dans `assets/cv/` (source), ex. `CV_BackEnd_Binetou_Gueye_FR.pdf`.
+   Sans PDF : ouvrir le Word dans Pages ou Word et l'exporter en PDF.
+2. Copier le PDF dans `frontend/public/cv/` **sous le nom utilisé par le site** (sinon les liens ne changent pas) :
+
+| `assets/cv/` | `frontend/public/cv/` |
+|---|---|
+| `CV_General_Binetou_Gueye_FR.pdf` / `_EN.pdf` | `CV_Binetou_Gueye_General.pdf` / `CV_Binetou_Gueye_General_EN.pdf` |
+| `CV_FrontEnd_Binetou_Gueye_FR.pdf` / `_EN.pdf` | `CV_Binetou_Gueye_Front-End.pdf` / `CV_Binetou_Gueye_Front-End_EN.pdf` |
+| `CV_BackEnd_Binetou_Gueye_FR.pdf` / `_EN.pdf` | `CV_Binetou_Gueye_Back-End.pdf` / `CV_Binetou_Gueye_Back-End_EN.pdf` |
+
+Autre nom côté site → mettre à jour `identite.cv` dans `contenu.json`.
 
 ### Remplacer une photo ou le logo Sen Suivi
 1. Remplacer l'original dans `assets/photos/` ou `assets/projets/` (et dans `frontend/public/images/`).
