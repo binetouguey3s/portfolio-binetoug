@@ -170,7 +170,7 @@ class ActionsTests(SimpleTestCase):
 
     def test_exemples_de_l_interface(self):
         self.assertEqual(choisir_actions("Parle-moi de Sen Suivi"), ["voir-sen-suivi"])
-        self.assertEqual(choisir_actions("Est-elle disponible ?"), ["ecrire-email", "voir-contact"])
+        self.assertEqual(choisir_actions("Est-elle disponible ?"), ["ecrire-email"])
         self.assertEqual(choisir_actions("Quelle est sa stack principale ?"), ["cv-general"])
         self.assertEqual(choisir_actions("Elle connaît Angular et Django ?"), ["cv-general"])
         self.assertEqual(choisir_actions("Bonjour"), [])
@@ -179,7 +179,7 @@ class ActionsTests(SimpleTestCase):
         self.assertEqual(choisir_actions("What is her experience with Django?"), ["cv-back-en"])
         self.assertEqual(choisir_actions("Can I download her resume?"), ["cv-general-en"])
         self.assertEqual(choisir_actions("Does she know Angular and React?"), ["cv-front-en"])
-        self.assertEqual(choisir_actions("Is she available for freelance work?"), ["ecrire-email", "voir-contact"])
+        self.assertEqual(choisir_actions("Is she available for freelance work?"), ["ecrire-email"])
         # En français, les CV restent en français
         self.assertEqual(choisir_actions("Quelle est son expérience avec Django ?"), ["cv-back"])
 

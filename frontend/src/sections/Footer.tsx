@@ -9,7 +9,8 @@ import { useChat } from '../hooks/useChat'
 import { contenu } from '../lib/content'
 import { useLangueCv } from '../hooks/useLangueCv'
 import { gsap, useGSAP } from '../lib/gsap'
-import { LIEN_EXTERNE } from '../lib/liens'
+import { LIEN_EXTERNE, lienGmail } from '../lib/liens'
+import { allerA } from '../lib/navigation'
 
 /** Icônes des réseaux (tracés de la maquette ; lucide-react n'a plus les logos de marque) */
 function IconeReseau({ icone }: { icone: string }) {
@@ -52,7 +53,8 @@ function adresseReseau(source: string): string {
   const { identite } = contenu
   if (source === 'identite.github') return identite.github
   if (source === 'identite.linkedin') return identite.linkedin
-  if (source === 'mailto:identite.email') return `mailto:${identite.email}`
+  // Adresse email : ouvre la rédaction d'un message dans Gmail
+  if (source === 'mailto:identite.email') return lienGmail(identite.email)
   return '#'
 }
 
@@ -111,7 +113,17 @@ export default function Footer() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Button href={`mailto:${identite.email}`} size="lg" magnetic>
+            {/* « Écrire un email » : mène au formulaire de contact, curseur dans le premier champ */}
+            <Button
+              href="#formulaire-contact"
+              size="lg"
+              magnetic
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                allerA('#formulaire-contact')
+              }}
+            >
               {footer.cta.bouton1}
             </Button>
             <Button variant="glass" size="lg" aria-haspopup="dialog" onClick={ouvrirPanneau}>
@@ -150,7 +162,8 @@ export default function Footer() {
           <div className="flex flex-col gap-3.5">
             <h2 className={titreColonne}>{footer.colonnes.reseaux}</h2>
             {footer.reseaux.map((reseau) => {
-              const externe = reseau.icone !== 'mail'
+              // Tous s'ouvrent dans un nouvel onglet (GitHub, LinkedIn, Gmail)
+              const externe = true
               return (
                 <a
                   key={reseau.label}

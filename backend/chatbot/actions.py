@@ -98,6 +98,10 @@ def choisir_actions(question: str) -> list[str]:
     if est_en_anglais(question):
         trouves = [f"{i}-en" if i.startswith("cv-") else i for i in trouves]
 
+    # « Écrire un email » mène au formulaire de contact : inutile de proposer aussi « Aller au contact »
+    if "ecrire-email" in trouves and "voir-contact" in trouves:
+        trouves.remove("voir-contact")
+
     autorises = identifiants_autorises()
     resultat: list[str] = []
     for ident in trouves:

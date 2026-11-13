@@ -41,7 +41,7 @@ Pas bloquant ; une consigne peut être ajoutée dans `content/base-connaissances
 
 - [ ] Se connecter à l'admin et supprimer le message « Recette étape 18 »
 - [ ] Tester sur un vrai téléphone, en mode sombre et en mode clair
-- [ ] Renseigner le lien de l'application Sen Suivi (`projets.vedette.lienApplication`, encore `A_COMPLETER` : bouton masqué)
+- [x] Renseigner le lien de l'application Sen Suivi : https://sen-suivi.vercel.app/ (bouton, titre et chatbot)
 - [ ] Renseigner le lien de la maquette JOJ Dakar 2026 (vide : bouton masqué)
 - [ ] Ajouter https://portfolio-binetou.vercel.app au CV, à LinkedIn et au profil GitHub
 
@@ -61,3 +61,4 @@ si des projets ont changé, les recharger sur Neon avec `charger_projets` (ou le
 | Date | Vérification | Résultat |
 |---|---|---|
 | 10/11/2026 | Recette complète (étape 18) | tout ✓, aucune correction |
+| 13/11/2026 | Liens : email → Gmail, « Écrire un email » → formulaire, lien de l'application Sen Suivi | ✓ testé en desktop et mobile |

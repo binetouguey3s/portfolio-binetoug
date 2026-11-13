@@ -223,7 +223,7 @@ export type ActionChatId =
 export interface ActionChat {
   id: string
   label: string
-  /** Chemin vers une autre clé du JSON, ancre (#…) ou « mailto:identite.email » */
+  /** Chemin vers une autre clé du JSON, ancre (#…, ex. #formulaire-contact, #video-sen-suivi) ou « mailto:identite.email » (ouvre Gmail) */
   cible: string
   /** Cible de repli si la cible principale est vide ou A_COMPLETER */
   repli?: string

@@ -132,6 +132,17 @@ sous le préchargeur. Toute valeur qui dépend du navigateur (thème, taille d'�
 - Vidéo Sen Suivi : le lecteur n'est créé qu'à l'ouverture de la fenêtre (rien n'est téléchargé avant le clic).
 - CV : `public/cv/` (copies de `assets/cv/`), en français et en anglais ; pastilles FR/EN, langue du navigateur en premier.
 
+### Où mènent les liens
+| Lien | Destination |
+|---|---|
+| Ton adresse email (contact, footer, réponses du chat, messages d'erreur) | rédaction d'un message **dans Gmail**, adresse remplie, nouvel onglet (`lienGmail` dans `lib/liens.ts`) |
+| « Écrire un email » (chatbot, footer) | **formulaire de contact**, curseur dans « Nom » (ancre `#formulaire-contact`) |
+| « Voir l'application » du chatbot | l'application si `lienApplication` est renseigné, sinon la **fenêtre vidéo** du site (`#video-sen-suivi`) |
+| Boutons du chatbot vers la page (`#…`) | ferment d'abord le panneau flottant, puis défilent jusqu'à la cible (`lib/navigation.ts`) |
+| GitHub, LinkedIn, projets | nouvel onglet |
+
+Si les deux boutons « Écrire un email » et « Aller au contact » sont choisis, seul le premier est gardé (ils mènent au même endroit).
+
 ### SEO
 Générés au build depuis `contenu.json` (`vite.config.ts`) : balises Open Graph et Twitter, adresse canonique,
 données structurées `Person`, `robots.txt`, `sitemap.xml`, `llms.txt`. L'adresse du site vient de `meta.url`

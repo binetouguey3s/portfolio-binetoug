@@ -6,7 +6,7 @@ import SectionHeading from '../components/SectionHeading'
 import { envoyerMessageContact, ErreurChampsContact, LIMITES_CONTACT } from '../lib/contact-service'
 import { contenu } from '../lib/content'
 import { gsap, useGSAP } from '../lib/gsap'
-import { LIEN_EXTERNE } from '../lib/liens'
+import { LIEN_EXTERNE, lienGmail } from '../lib/liens'
 
 type Etat = 'repos' | 'envoi' | 'succes' | 'erreur'
 type Champ = 'nom' | 'email' | 'message'
@@ -34,7 +34,7 @@ function verifier(champ: Champ, brut: string): string | undefined {
   return undefined
 }
 
-/** Rend l'adresse email cliquable (mailto) à l'intérieur d'un texte de contenu.json. */
+/** Rend l'adresse email cliquable (ouvre Gmail) à l'intérieur d'un texte de contenu.json. */
 function avecLienEmail(texte: string, email: string) {
   const morceaux = texte.split(email)
   if (morceaux.length === 1) return texte
@@ -44,7 +44,8 @@ function avecLienEmail(texte: string, email: string) {
       : [
           <a
             key={i}
-            href={`mailto:${email}`}
+            href={lienGmail(email)}
+            {...LIEN_EXTERNE}
             className="font-medium text-current underline underline-offset-2"
           >
             {email}
@@ -137,7 +138,7 @@ export default function Contact() {
         if (champ) formulaire.querySelector<HTMLElement>(`[name="${champ}"]`)?.focus()
         return
       }
-      // API hors ligne, limite atteinte… : message d'erreur avec lien mailto
+      // API hors ligne, limite atteinte… : message d'erreur avec l'adresse email (ouvre Gmail)
       setEtat('erreur')
     }
   }
@@ -192,7 +193,8 @@ export default function Contact() {
             espace="gap-[26px]"
           />
           <a
-            href={`mailto:${identite.email}`}
+            href={lienGmail(identite.email)}
+            {...LIEN_EXTERNE}
             className="self-start break-all font-display text-[22px] text-text underline decoration-glow underline-offset-8 transition-colors hover:text-accent md:text-[30px]"
           >
             {identite.email}
@@ -219,6 +221,7 @@ export default function Contact() {
         {/* Formulaire en verre */}
         <Glass
           as="form"
+          id="formulaire-contact"
           rounded="card"
           data-monte
           noValidate

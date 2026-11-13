@@ -70,7 +70,7 @@ Esprit entrepreneurial, vision produit, rigueur, adaptabilité, esprit d'équipe
 
 ## Compléments du site (générés depuis contenu.json)
 - Chiffres du site : 10 projets conçus et livrés.
-- Sen Suivi : devise « Un esprit sain pour une société saine » ; lien de l'application pas encore public, vidéo de présentation sur le site.
+- Sen Suivi : devise « Un esprit sain pour une société saine » ; application : sen-suivi.vercel.app.
 - Liens des projets : Andë Sétal github.com/AndeSetale/Backend_AndeSetale ; YEES NAA CONNECT yeesnaa.com ; AfriStory shape-cyprus-02393842.figma.site ; Eco-Stock github.com/binetouguey3s/Eco-Stock ; Sunu Idées sunuideeopenrouter.vercel.app.
 - Méthode : Écouter → Concevoir → Construire → Livrer.
 - Engagements : Un code lisible et documenté ; Des interfaces pour tout le monde ; Des solutions ancrées ici ; Une IA utile et encadrée.

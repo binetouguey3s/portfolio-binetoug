@@ -24,7 +24,19 @@ export default function FeaturedProject({ vedette }: { vedette: ProjetVedette })
           {vedette.badge}
         </Chip>
         <h3 className="m-0 font-display text-[34px] leading-[1.05] font-normal tracking-[-1px] md:text-[46px]">
-          {vedette.nom}
+          {/* Le nom mène à l'application en ligne (si son lien est renseigné) */}
+          {lienValide(vedette.lienApplication) ? (
+            <a
+              href={vedette.lienApplication}
+              {...LIEN_EXTERNE}
+              className="text-current no-underline decoration-glow decoration-1 underline-offset-[6px] transition-colors hover:text-accent hover:underline"
+            >
+              {vedette.nom}
+              <span className="sr-only"> (nouvel onglet)</span>
+            </a>
+          ) : (
+            vedette.nom
+          )}
         </h3>
         <p className="m-0 text-base leading-[1.7] text-text/85 md:text-[17px]">{vedette.description}</p>
         <p className="m-0 text-[14px] text-accent">{vedette.role}</p>
@@ -42,6 +54,7 @@ export default function FeaturedProject({ vedette }: { vedette: ProjetVedette })
             </Button>
           ) : null}
           <Button
+            id="video-sen-suivi"
             variant="secondary"
             onClick={() => setVideoOuverte(true)}
             aria-haspopup="dialog"

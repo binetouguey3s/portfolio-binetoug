@@ -61,10 +61,10 @@ class ProjetsTests(TestCase):
         call_command("charger_projets", stdout=StringIO())
         self.assertEqual(Project.objects.count(), len(lire_contenu()["projets"]["galerie"]) + 1)
 
-    def test_lien_a_completer_ou_vide_n_est_pas_charge(self):
+    def test_lien_renseigne_charge_et_lien_vide_ignore(self):
         call_command("charger_projets", stdout=StringIO())
         vedette = Project.objects.get(vedette=True)
-        self.assertEqual(vedette.lien, "")  # lienApplication vaut A_COMPLETER
+        self.assertEqual(vedette.lien, lire_contenu()["projets"]["vedette"]["lienApplication"])  # lien renseigné : chargé
         self.assertEqual(Project.objects.get(nom="JOJ Dakar 2026").lien, "")
 
     def test_purger_supprime_les_projets_absents_du_json(self):

@@ -140,7 +140,9 @@ function llmsTxt(c: Contenu, site: string | null): string {
     ]),
     '',
     '## Projets',
-    `- ${c.projets.vedette.nom}: ${c.projets.vedette.description}`,
+    lienValide(c.projets.vedette.lienApplication)
+      ? `- [${c.projets.vedette.nom}](${c.projets.vedette.lienApplication}): ${c.projets.vedette.description}`
+      : `- ${c.projets.vedette.nom}: ${c.projets.vedette.description}`,
     ...c.projets.galerie.map((p) =>
       lienValide(p.lien.url) ? `- [${p.nom}](${p.lien.url}): ${p.description}` : `- ${p.nom}: ${p.description}`,
     ),

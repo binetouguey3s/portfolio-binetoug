@@ -92,7 +92,7 @@
       "devise": "« Un esprit sain pour une société saine »",
       "piliers": "PRÉVENTION · SUIVI · ORIENTATION",
       "logo": { "sombre": "/images/projets/sensuivi-logo-sombre.png", "clair": "/images/projets/sensuivi-logo-clair.png" },
-      "lienApplication": "A_COMPLETER",
+      "lienApplication": "https://sen-suivi.vercel.app/",
       "video": "/videos/sensuivi-presentation-16x9.mp4",
       "videoMobile": "/videos/sensuivi-presentation-9x16.mp4",
       "videoAffiche": "/videos/sensuivi-affiche-16x9.jpg",
@@ -172,7 +172,7 @@
     "horsLigne": "Binetou IA revient bientôt. En attendant, écrivez directement à binetouguey3s@gmail.com.",
     "_noteActions": "L'IA ne produit jamais d'URL. /api/chat/ renvoie { reponse, actions: [id] } : 2 actions maximum, choisies par mots-clés, uniquement parmi les id ci-dessous (id inconnu ignoré). Les cibles pointent vers d'autres clés de ce fichier (une seule source à modifier). Cible vide ou A_COMPLETER : bouton masqué. Hors ligne : aucun bouton.",
     "actions": [
-      { "id": "voir-sen-suivi", "label": "Voir l'application ↗", "cible": "projets.vedette.lienApplication", "repli": "projets.vedette.video" },
+      { "id": "voir-sen-suivi", "label": "Voir l'application ↗", "cible": "projets.vedette.lienApplication", "repli": "#video-sen-suivi" },
       { "id": "voir-ande-setal", "label": "Voir Andë Sétal ↗", "cible": "projets.galerie[01].lien.url" },
       { "id": "voir-yees-naa", "label": "Voir YEES NAA CONNECT ↗", "cible": "projets.galerie[02].lien.url" },
       { "id": "voir-agrimeteo", "label": "Voir AgriMétéo Sénégal ↗", "cible": "projets.galerie[03].lien.url" },
@@ -185,7 +185,7 @@
       { "id": "cv-general-en", "label": "Download General CV (English)", "cible": "identite.cv[0].fichierEN" },
       { "id": "cv-front-en", "label": "Download Front-End CV (English)", "cible": "identite.cv[1].fichierEN" },
       { "id": "cv-back-en", "label": "Download Back-End CV (English)", "cible": "identite.cv[2].fichierEN" },
-      { "id": "ecrire-email", "label": "Écrire un email", "cible": "mailto:identite.email" },
+      { "id": "ecrire-email", "label": "Écrire un email", "cible": "#formulaire-contact" },
       { "id": "voir-projets", "label": "Voir les projets", "cible": "#projets" },
       { "id": "voir-contact", "label": "Aller au contact", "cible": "#contact" }
     ]
@@ -225,7 +225,7 @@
     ]
   },
   "footer": {
-    "cta": { "surtitre": "UN PROJET, UN POSTE, UNE IDÉE ?", "titre": { "avant": "Faisons-la", "italique": "grandir ensemble." }, "bouton1": "Écrire un email ↗", "bouton2": "Demander à Binetou IA" },
+    "cta": { "surtitre": "UN PROJET, UN POSTE, UNE IDÉE ?", "titre": { "avant": "Faisons-la", "italique": "grandir ensemble." }, "bouton1": "Écrire un email", "bouton2": "Demander à Binetou IA" },
     "presentation": "Développeuse full-stack web, mobile et IA, fondatrice de Sen Suivi la Solution. Basée à Dakar, ouverte au monde.",
     "colonnes": { "navigation": "NAVIGATION", "reseaux": "RÉSEAUX", "cv": "MES CV" },
     "navigation": [

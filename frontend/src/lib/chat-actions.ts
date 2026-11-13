@@ -5,7 +5,7 @@
  * Identifiant inconnu, cible vide ou A_COMPLETER : pas de bouton.
  */
 import { contenu } from './content'
-import { lienValide } from './liens'
+import { lienGmail, lienValide } from './liens'
 
 export type ActionResolue = {
   id: string
@@ -17,10 +17,10 @@ export type ActionResolue = {
   telechargement: boolean
 }
 
-/** Lit une cible de chatbot.actions : chemin dans contenu.json, ancre ou mailto. */
+/** Lit une cible de chatbot.actions : chemin dans contenu.json, ancre (#…) ou adresse email (ouverte dans Gmail). */
 function lireCible(cible: string): string | null {
   if (cible.startsWith('#')) return cible
-  if (cible === 'mailto:identite.email') return `mailto:${contenu.identite.email}`
+  if (cible === 'mailto:identite.email') return lienGmail(contenu.identite.email)
 
   // projets.galerie[01].lien.url : projet dont le numéro est 01
   const projet = /^projets\.galerie\[(\d+)\]\.lien\.url$/.exec(cible)
